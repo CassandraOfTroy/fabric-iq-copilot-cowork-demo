@@ -195,7 +195,7 @@ As Colin, in Copilot at copilot.cloud.microsoft (**Chat**), ask: *What do my ema
 Then select **Cowork** in the top toggle and **Customize** in the left navigation ([Customize Cowork](https://learn.microsoft.com/microsoft-365/copilot/cowork/cowork-customize)):
 
 - **Plugins:** **Fabric IQ** is listed under **Installed** and turned on. It's the plugin that reads Power BI reports and is "installed by default in Cowork".
-- **Skills:** the built-in list includes **PowerPoint**, **Email** and **Scheduling**, the skills prompt 5 needs.
+- **Skills:** the built-in list includes **PowerPoint**, **Email** and **Scheduling**, the skills prompt 4 needs.
 
 ### Step 5: Rehearse once (30 minutes)
 
@@ -213,32 +213,25 @@ Run the whole demo once. Then, in Colin's Copilot Chat, delete the Monday briefi
 
 | Prompt | What Copilot uses | Where you see it |
 |---|---|---|
-| 1–3 · Isaac asks | Copilot Chat with Fabric IQ (the report, as Isaac) | Answers with numbers and charts; a draft email |
-| 4 · Colin investigates | Fabric IQ (the report, as Colin) and a search of his emails and files (Work IQ) | Short updates such as *Searching OneDrive* |
-| 5 · Do the work | Cowork skills **PowerPoint**, **Email** and **Scheduling** ([Use Cowork](https://learn.microsoft.com/microsoft-365/copilot/cowork/use-cowork#cowork-skills)) | The deck under **Output folder**; the drafts in the approval cards |
-| 6 · Keep watching | A scheduled prompt in Copilot Chat | **... Settings and more** > **Scheduled prompts** |
+| 1–2 · Isaac asks | Copilot Chat with Fabric IQ (the report, as Isaac) | Answers with numbers and charts; a draft email |
+| 3 · Colin investigates | Fabric IQ (the report, as Colin) and a search of his emails and files (Work IQ) | Short updates such as *Searching OneDrive* |
+| 4 · Do the work | Cowork skills **PowerPoint**, **Email** and **Scheduling** ([Use Cowork](https://learn.microsoft.com/microsoft-365/copilot/cowork/use-cowork#cowork-skills)) | The deck under **Output folder**; the drafts in the approval cards |
+| 5 · Keep watching | A scheduled prompt in Copilot Chat | **... Settings and more** > **Scheduled prompts** |
 
-### 1 · Isaac · Power BI report, then Copilot Chat (3 minutes)
+### 1 · Isaac · Power BI report, then Copilot Chat (5 minutes)
 
-Show the report first, then ask Copilot Chat:
+Show the report first, then switch to Copilot Chat:
 
 ```text
-Give me a brief executive summary of the Supplier Invoice Assurance Power BI report with visuals. How did supplier invoice accuracy and overbilling develop in the last 4 weeks compared with the 4 weeks before? Flag anything out of step.
+Give me a brief executive summary of the Supplier Invoice Assurance Power BI report with visuals. How did supplier invoice accuracy and overbilling develop in the last 4 weeks compared with the 4 weeks before?
+Break it down by supplier, country and by week.
+Flag anything out of step.
 ```
 
-- **You'll see:** Europe 94.0% (was 99.7%), $22.2K flagged; the drop starts in the week of 5 Oct.
-- **Say:** "Isaac runs six countries. One question, and Copilot reads the governed Power BI report for him."
+- **You'll see:** Europe 94.0% (was 99.7%), $22.2K flagged; the drop starts in the week of 5 Oct. Germany $16.5K, all Annterra: $4.45 billed against $3.95 in the contract data. AP will block $147K.
+- **Say:** "Isaac runs six countries. One question, and Copilot reads the governed Power BI report for him. Annterra packs our tablets, and we pay per finished pack. Since 5 Oct the data says they charge 50 cents too much per pack. Do we block them?"
 
 ### 2 · Isaac · Copilot Chat (2 minutes)
-
-```text
-Break it down by country and by week, and tell me which supplier drives it and what AP will block.
-```
-
-- **You'll see:** Germany $16.5K, all Annterra: $4.45 billed against $3.95 in the contract data since 5 Oct. AP will block $147K.
-- **Say:** "Annterra packs our tablets, and we pay per finished pack. Since 5 Oct the data says they charge 50 cents too much per pack. Do we block them?"
-
-### 3 · Isaac · Copilot Chat (2 minutes)
 
 ```text
 Draft an Outlook email to Colin Ballinger: Annterra's German invoices have been flagged as above the contract price since 5 Oct and AP will block $147K of Annterra payments. Ask him whether we should block Annterra and to come back with his findings.
@@ -247,7 +240,7 @@ Draft an Outlook email to Colin Ballinger: Annterra's German invoices have been 
 - **You'll see:** a draft email to Colin. Isaac reviews it and sends it.
 - **Say:** "He asks the person who owns Germany."
 
-### 4 · Colin · Copilot: investigate (6 minutes)
+### 3 · Colin · Copilot: investigate what happened (6 minutes)
 
 ```text
 Isaac asks whether we should block Annterra. Check the Supplier Invoice Assurance report for Germany and my emails and files about Annterra's contract price. Is Annterra overbilling us, or is our contract data wrong? Show me the evidence.
@@ -256,44 +249,43 @@ Isaac asks whether we should block Annterra. Check the Supplier Invoice Assuranc
 Follow-up:
 
 ```text
-Why didn't we register the correct price? What happened and how can we fix this?
+Why we didn't register the correct price? What happened and how can we fix this?
 ```
 
 - **You'll see:** Germany only: 71.7%, 15 Annterra invoices, $16.5K flagged, $147K to block. Then the evidence: the signed amendment, Charlotte's request to the closed mailbox, and Laurence's email that he now registers contract prices.
-- **Show:** Colin's report: he sees only Germany.
+- **Show:** switch to Colin's Power BI report: he sees only the German market.
 - **Say:** "Same report, but Colin sees only Germany. Then Copilot finds what the data can't show: Charlotte signed the higher price to reserve Annterra's packing slots for Allerveo every week, and her request to update the data went to a closed mailbox. Annterra is right; our data is wrong."
 
-### 5 · Colin · Cowork: do the work (6 minutes)
+### 4 · Colin · Cowork: do the multi-step work (6 minutes)
 
 ```text
-Prepare the Annterra decision for Isaac.
 1) Create and send an Outlook email to Laurence Gilbertson now: Please register $4.45 per pack from 5 Oct 2026 for contract CTR-ANN-DE and refresh the Supplier Invoice Assurance model; attach Amendment No. 1 from my OneDrive. Add Charlotte Waltson to CC of the mail.
 2) Create a 3-slide PowerPoint: what the Supplier Invoice Assurance report shows for Germany (invoice accuracy by week and the $147K AP will block), why (Amendment No. 1, signed 18 Sep: $4.45 per pack from 5 Oct; the update request went to the closed contract-admin mailbox) and the decision (don't block Annterra; Laurence registers the price).
-3) Email the deck to Isaac Fielder: we should not block Annterra; the invoices match Amendment No. 1 and Laurence is registering the price today.
-4) Find the available 15-minute slot tomorrow with Isaac Fielder and Laurence Gilbertson to clarify what happened.
+3) Email and attach the deck to Isaac Fielder: we should not block Annterra; the invoices match Amendment No. 1 and Laurence is registering the price today.
+4) Find the available 15-minute slot tomorrow with Isaac Fielder and Laurence Gilbertson to clarify what happened and schedule the earliest available slot with them.
 ```
 
 - **You'll see:** Cowork drafts the email to Laurence (cc Charlotte), the deck, the email to Isaac with the deck and the meeting, and asks for approval. Before you approve, show the deck: in the panel on the right, under **Output folder**, select **Preview**. Then check the drafts and select **Approve All**.
 - **Say:** "Cowork doesn't tell Colin what to do. It does it, and he approves every action."
 
-### 6 · Colin · Copilot Chat: keep watching (3 minutes)
+### 5 · Colin · Copilot Chat: keep watching (3 minutes)
 
-In Copilot Chat (**Work IQ** tab), send:
+Return to Copilot Chat (**Work IQ** tab) and send:
 
 ```text
 Prepare a supplier briefing for Caldova Germany. From the Supplier Invoice Assurance report: invoice accuracy by week and any supplier with flagged invoices. From my emails and files of the last two weeks about suppliers: contract changes, price changes, open questions. Tell me what needs action.
 ```
 
-Check the answer, then hover over the prompt and select **Schedule this prompt**: every Monday at 8:00, with an email notification. "Scheduled Prompts is available only in the Work IQ tab in Microsoft Copilot." ([Scheduled prompts](https://learn.microsoft.com/microsoft-365/copilot/scheduled-prompts)) If the option doesn't show, refresh the chat.
+Check the answer. Then, at the bottom of the Copilot response, select **...** (**More options**) > **Schedule this prompt** > Monday, 8:00 AM. If the option doesn't show, refresh the chat. "Scheduled Prompts is available only in the Work IQ tab in Microsoft Copilot." ([Scheduled prompts](https://learn.microsoft.com/microsoft-365/copilot/scheduled-prompts))
 
 - **You'll see:** Germany at 61.5% last week, and Annterra explained, with the fix requested from Laurence.
 - **Say:** "And it keeps watching. Every Monday Copilot checks the report and Colin's supplier emails for all suppliers, so the next problem like this shows up before anyone talks about blocking a supplier."
 
 In Cowork you can schedule the same check by putting the timing in the message: "Every Monday at 8:00, send me a supplier briefing for Caldova Germany. [...] Run the first one now." Schedules are under **Automations** > **Manage schedules** ([Use Cowork](https://learn.microsoft.com/microsoft-365/copilot/cowork/use-cowork)).
 
-### 7 · Isaac and Laurence · Outlook (3 minutes)
+### 6 · Isaac and Laurence · Outlook (3 minutes)
 
-Open Isaac's inbox, then Colin's email and the deck. Then show the invite for tomorrow's 15-minute meeting in Isaac's and Laurence's calendars.
+Open the inbox, then Colin's email and the deck. Then find the invite for tomorrow's 15-minute meeting.
 
 - **Say:** "Isaac gets the decision and the evidence. Don't block Annterra: pay the $147K on time. Fabric IQ showed *what*, Work IQ found *why*, and Cowork did the work, each person only with the data they may see."
 
