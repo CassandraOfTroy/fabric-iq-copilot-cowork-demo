@@ -24,6 +24,14 @@ Caldova is a fictional pharma company. It makes its medicine, Allerveo, in its o
   Isaac, Region Manager Europe, is about to tell Accounts Payable to hold them.
 - **Why that's hard.** The data alone says "block". The reason it's wrong is outside the data: in a signed document and two emails. Usually it takes a chain of questions and meetings to find it, and meanwhile a supplier that billed correctly gets paid late.
 
+**The report, as Isaac sees it** (all 6 countries): Europe at 94.0%, Germany the only red bar.
+
+![Supplier Invoice Assurance report, all countries: invoice accuracy 94.0% (was 99.7%), $22.2K overbilled, $167.9K payments AP will block, Germany $16.5K](images/report-isaac-europe.png)
+
+**The same report, as Colin sees it** (row-level security, Germany only): 71.7%, three red weeks from 5 October, all Annterra at $4.45 against $3.95 in the contract data, $147.1K to block.
+
+![Supplier Invoice Assurance report, Germany only: invoice accuracy 71.7% (was 100%), 15 flagged Annterra invoices, $16.5K overbilled, $147.1K payments AP will block](images/report-colin-germany.png)
+
 **The signed amendment** ([seed-content](seed-content), uploaded to Colin's OneDrive). The report knows nothing about it:
 
 ![Contract Amendment No. 1: $3.95 until 4 October 2026, $4.45 from 5 October 2026, signed 18 September 2026](images/contract-amendment.png)
