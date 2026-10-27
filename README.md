@@ -38,13 +38,7 @@ Caldova is a fictional pharma company. It makes its medicine, Allerveo, in its o
 
 ## The demo at a glance
 
-| Time | Who | Where | What happens |
-|---|---|---|---|
-| 08:30 | **Isaac** (sees all 6 countries) | Power BI report, Copilot Chat | Asks how supplier invoices are doing. Germany stands out, all Annterra. He emails Colin: should we block them? |
-| 09:00 | **Colin** (sees only Germany, row-level security) | Copilot | Asks whether Annterra is overbilling or the data is wrong. Copilot reads the report as Colin and finds the amendment and the lost request in his emails and files: **Annterra is right, the contract data is wrong.** |
-| 09:05 | **Colin** | Copilot Cowork | One prompt, and Colin approves each action: the request to Laurence to register the price, a 3-slide decision deck, the email with the deck to Isaac, and a 15-minute meeting with Isaac and Laurence tomorrow. |
-| 09:10 | **Colin** | Copilot Chat | Schedules a Monday supplier briefing: the report plus his supplier emails, for all suppliers. |
-| 09:20 | **Isaac** | Outlook | The decision and the evidence are in his inbox: don't block Annterra, pay the $147K on time. |
+![From a red KPI to the right decision in one morning: 08:30 Isaac in Copilot Chat sees Germany stand out; 09:00 Colin in Copilot investigates; 09:05 Colin in Cowork builds the decision pack; 09:10 Colin sets up a Monday supplier briefing; 09:20 Isaac finds the answer in Outlook](images/demo-flow.png)
 
 **The message:** Fabric IQ shows *what*, Work IQ finds *why*, Cowork does the work, and everyone sees only the data they're allowed to see.
 
@@ -58,20 +52,6 @@ Both Copilots query Power BI as the signed-in user. Copilot Chat "uses the user'
 | **Colin Ballinger** (ColinB) | Country Manager Germany | **Only Germany** (RLS) | Copilot Chat and Copilot Cowork |
 | **Charlotte Waltson** (CharlotteW) | Director, Pricing & Contracting; signed the amendment | Not used | Sends one seed email; cc on Colin's email to Laurence |
 | **Laurence Gilbertson** (LaurenceG) | Data Analyst, registers contract prices | All countries | Gets Colin's email and the meeting invite |
-
-Every sign-in is `<alias>@<your-tenant>.onmicrosoft.com`.
-
-### Words you'll hear
-
-| Word | What it means |
-|---|---|
-| **Finished pack, $4.45** | One box ready for pharmacies: blister strips, patient leaflet, label. $4.45 is Annterra's price for packing one box (was $3.95). |
-| **Amendment No. 1** | The signed price change, in return for packing slots reserved for Allerveo every week. The amendment calls them "production slots". |
-| **Contract data** | Caldova's database of agreed supplier prices. Every invoice is checked against it. Laurence keeps it up to date. |
-| **Accounts Payable (AP)** | The team that pays supplier invoices. It holds invoices that don't match the contract data. |
-| **Flagged, held** | Flagged: the invoice price doesn't match the contract data. Held (blocked): AP doesn't pay it until it's cleared. |
-
-**What the data knows, and what it doesn't.** The semantic model has no product column. For Annterra it shows only the supplier category ("Contract Manufacturing (OSD)"), the line description ("Finished packs, oral solid dose"), the unit ("pack") and the prices. That these are Allerveo packs, and why the price changed, is only in the signed amendment, which Copilot reads in prompt 4.
 
 ## Set up
 
@@ -172,7 +152,7 @@ Charlotte
 
 From: Charlotte Waltson
 Sent: Monday, 21 September 2026 09:40
-To: contract-admin@<your-tenant>.onmicrosoft.com
+To: Contract Admin team mailbox
 Cc: Colin Ballinger
 Subject: Annterra Amendment No. 1 - please register the new price in the contract database
 
