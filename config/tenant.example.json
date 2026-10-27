@@ -13,7 +13,7 @@
     "capacityId": "<fabric-capacity-id>"
   },
   "users": {
-    "$comment": "regionManager = Isaac Fielder (Region Manager Europe, Admin on both workspaces, sees all countries); businessUser = Colin Ballinger (Country Manager Germany, Viewer on the Insights workspace, Read + Build on the model, RLS role member - added by a person in the portal); dataAnalyst = Laurence Gilbertson (Data Analyst, Contributor on the data workspace).",
+    "$comment": "regionManager = Isaac Fielder (Region Manager Europe, Contributor on the Insights workspace, Read + Build on the model, RLS role Region Manager: all countries); businessUser = Colin Ballinger (Country Manager Germany, Viewer on the Insights workspace, Read + Build on the model, RLS role Business User: only his country); dataAnalyst = Laurence Gilbertson (Data Analyst, Admin on both workspaces). RLS role members are added by a person in the portal.",
     "regionManager": "IsaacF",
     "businessUser": "ColinB",
     "dataAnalyst": "LaurenceG"
@@ -25,6 +25,7 @@
     "semanticModel": "Supplier Invoice Assurance",
     "report": "Supplier Invoice Assurance",
     "rlsRole": "Business User",
+    "rlsRoleRegion": "Region Manager",
     "connectionName": "Caldova OneLake - Caldova Finance workspace identity"
   },
   "colinCountry": "Germany",

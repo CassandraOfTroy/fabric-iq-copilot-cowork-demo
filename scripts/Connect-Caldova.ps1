@@ -26,7 +26,7 @@ $ErrorActionPreference = 'Stop'
 
 Write-Host ''
 Write-Host "Sign in with an account of $($cfg.tenantDomain) that can deploy Fabric content, for example:" -ForegroundColor Cyan
-Write-Host "  region manager : $($cfg.users.regionManager)@$($cfg.tenantDomain)   (Admin on both finance workspaces)" -ForegroundColor Cyan
+Write-Host "  data analyst   : $($cfg.users.dataAnalyst)@$($cfg.tenantDomain)   (Admin on both finance workspaces)" -ForegroundColor Cyan
 Write-Host "  or the tenant admin account that owns the Fabric capacity" -ForegroundColor Cyan
 Write-Host ''
 

@@ -2,9 +2,9 @@
 
 Steps (run in order; each is safe to re-run):
   workspaces   resolve (or create on the configured capacity) 'Caldova Finance' + 'Caldova Finance Insights' and the
-               lakehouse LH_CaldovaFinance (schemas enabled). IsaacF (Region Manager Europe) Admin on both,
-               LaurenceG (Data Analyst) Contributor on 'Caldova Finance', ColinB (Country Manager Germany) Viewer on
-               'Caldova Finance Insights' only
+               lakehouse LH_CaldovaFinance (schemas enabled). LaurenceG (Data Analyst, owns the data) Admin on both;
+               the business users get no role on 'Caldova Finance', so model RLS applies to them: IsaacF (Region
+               Manager Europe) Contributor and ColinB (Country Manager Germany) Viewer on 'Caldova Finance Insights'
   load         write data/finance/*.csv as Delta tables to OneLake (Tables/dbo/fin_*); other lakehouse tables stay.
                The {{TENANT_DOMAIN}} placeholder in the data is replaced with the configured tenant domain
   model        create the Direct Lake model 'Supplier Invoice Assurance' from fabric/ (TMDL). An existing model is
@@ -12,13 +12,14 @@ Steps (run in order; each is safe to re-run):
   refresh      sync the lakehouse SQL analytics endpoint metadata and reframe the Direct Lake model
   connection   fixed identity: cloud connection that authenticates with the 'Caldova Finance' workspace identity,
                SSO off, so business users never need lakehouse access; model RLS still applies
-  permissions  ColinB Read + Build (ReadExplore) on the model: the report in the Insights workspace, Fabric IQ in
-               Microsoft 365 Copilot and Copilot Cowork (Build is needed for DAX queries)
+  permissions  IsaacF and ColinB Read + Build (ReadExplore) on the model: the report in the Insights workspace, Fabric
+               IQ in Microsoft 365 Copilot and Copilot Cowork (Build is needed for DAX queries)
   reports      publish the PBIR report 'Supplier Invoice Assurance' to 'Caldova Finance Insights', bound live to the
                model
   validate     DAX checks against data/finance/expected_answers.json (+ RLS impersonation once role members exist)
 
-Never adds or removes RLS role members: a person adds ColinB to the 'Business User' role in the Power BI service.
+Never adds or removes RLS role members: a person adds IsaacF to 'Region Manager' and ColinB to 'Business User' in the
+Power BI service.
 Manual demo steps (Prep data for AI, seeding, rehearsal) are in README.md.
 Usage:  pwsh -File scripts\\Deploy-CaldovaFinance.ps1 -Step workspaces,load,model,refresh,connection,permissions,validate
 """
@@ -48,6 +49,10 @@ DATA = ROOT / "data" / "finance"
 FABRIC_DIR = ROOT / "fabric"
 MODEL = FAB["semanticModel"]
 REPORTS = {"overview": FAB["report"]}
+BUSINESS_USERS = {  # persona -> RLS role; neither gets a role on the data workspace, so RLS applies to both
+    "regionManager": FAB.get("rlsRoleRegion", "Region Manager"),
+    "businessUser": FAB["rlsRole"],
+}
 STATE_FILE = ROOT / ".deploy-state" / "finance.json"
 STEPS = ["workspaces", "load", "model", "refresh", "connection", "permissions", "reports", "validate"]
 
@@ -81,14 +86,15 @@ def step_workspaces(state: dict) -> None:
     lakehouse = fh.ensure_lakehouse(data_ws, FAB["lakehouse"],
                                     "Caldova supplier invoices checked against contract prices (synthetic demo data).")
     log(f"'{FAB['dataWorkspace']}' {data_ws}, '{FAB['insightsWorkspace']}' {insights_ws}, {FAB['lakehouse']} {lakehouse}")
-    for ws in (data_ws, insights_ws):  # Isaac, the region manager: a workspace role, so no RLS (all countries)
-        fh.ensure_role(ws, USERS["regionManager"], "Admin")
-    fh.ensure_role(data_ws, USERS["dataAnalyst"], "Contributor")
+    for ws in (data_ws, insights_ws):
+        fh.ensure_role(ws, USERS["dataAnalyst"], "Admin")
+    fh.ensure_role(insights_ws, USERS["regionManager"], "Contributor")
     fh.ensure_role(insights_ws, USERS["businessUser"], "Viewer")
-    colin = cf.graph_user_id(USERS["businessUser"])
-    if any(a["principal"]["id"] == colin for a in cf.fabric_list(f"/workspaces/{data_ws}/roleAssignments")):
-        raise RuntimeError(f"{USERS['businessUser']} has a role on '{FAB['dataWorkspace']}': remove it, business users "
-                           "must only use the Insights workspace (a workspace role also bypasses RLS)")
+    data_roles = {a["principal"]["id"] for a in cf.fabric_list(f"/workspaces/{data_ws}/roleAssignments")}
+    for persona in BUSINESS_USERS:
+        if cf.graph_user_id(USERS[persona]) in data_roles:
+            raise RuntimeError(f"{USERS[persona]} has a role on '{FAB['dataWorkspace']}': remove it. Business users "
+                               "must only use the Insights workspace (a workspace role there bypasses RLS)")
     state.update(dataWorkspaceId=data_ws, insightsWorkspaceId=insights_ws, lakehouseId=lakehouse)
 
 
@@ -230,11 +236,11 @@ def step_connection(state: dict) -> None:
     else:
         conn = create_onelake_connection(ref["connectionDetails"]["path"], name)
         log(f"connection '{name}' created ({conn['id']}): workspace identity, SSO off")
-    owner = cf.graph_user_id(USERS["regionManager"])
+    owner = cf.graph_user_id(USERS["dataAnalyst"])
     if not any(a["principal"]["id"] == owner for a in cf.fabric_list(f"/connections/{conn['id']}/roleAssignments")):
         cf.fabric("POST", f"/connections/{conn['id']}/roleAssignments",
                   {"principal": {"id": owner, "type": "User"}, "role": "Owner"})
-        log(f"  {USERS['regionManager']}: Owner of the connection")
+        log(f"  {USERS['dataAnalyst']}: Owner of the connection")
     if ref.get("id") == conn["id"]:
         log(f"  '{MODEL}' already bound to the fixed identity")
     else:
@@ -248,15 +254,17 @@ def step_connection(state: dict) -> None:
 
 
 def step_permissions(state: dict) -> None:
-    ws, mid, upn = state["dataWorkspaceId"], state["semanticModelId"], USERS["businessUser"]
+    ws, mid = state["dataWorkspaceId"], state["semanticModelId"]
     users = cf.pbi("GET", f"/groups/{ws}/datasets/{mid}/users").json().get("value", [])
-    body = {"identifier": upn, "principalType": "User", "datasetUserAccessRight": "ReadExplore"}
-    if any(u.get("identifier", "").lower() == upn.lower() for u in users):
-        cf.pbi("PUT", f"/groups/{ws}/datasets/{mid}/users", body)
-    else:
-        cf.pbi("POST", f"/groups/{ws}/datasets/{mid}/users", body)
-    log(f"{upn}: Read + Build (ReadExplore) on '{MODEL}' (no workspace role in '{FAB['dataWorkspace']}')")
-    log(f"RLS: add {upn} to the '{FAB['rlsRole']}' role of '{MODEL}' in the Power BI service (never scripted)")
+    for persona, rls_role in BUSINESS_USERS.items():
+        upn = USERS[persona]
+        body = {"identifier": upn, "principalType": "User", "datasetUserAccessRight": "ReadExplore"}
+        if any(u.get("identifier", "").lower() == upn.lower() for u in users):
+            cf.pbi("PUT", f"/groups/{ws}/datasets/{mid}/users", body)
+        else:
+            cf.pbi("POST", f"/groups/{ws}/datasets/{mid}/users", body)
+        log(f"{upn}: Read + Build (ReadExplore) on '{MODEL}' (no workspace role in '{FAB['dataWorkspace']}')")
+        log(f"RLS: add {upn} to the '{rls_role}' role of '{MODEL}' in the Power BI service (never scripted)")
 
 
 # ---------------------------------------------------------------- reports (powerbi-report-cli management mode)
@@ -370,15 +378,14 @@ def step_validate(state: dict, data_dir: pathlib.Path = DATA) -> None:
               (c["N"], num(c["Code"])), (10 * countries, ann["price_in_contract_database"]), failures)
 
     ann = exp["annterra_germany_amendment"]
-    persona("Isaac / region (workspace Admin = all rows, same as the deployer view)",
-            exp["personas"][USERS["regionManager"]], 6)
-    try:
-        persona(f"Colin via RLS impersonation ({FAB['rlsRole']})", exp["personas"][USERS["businessUser"]], 1,
-                USERS["businessUser"])
-    except RuntimeError as exc:
-        failures.append("Colin RLS")
-        print(f"  FAIL Colin RLS: {str(exc)[:300]} -> add {USERS['businessUser']} to the '{FAB['rlsRole']}' role "
-              "in the Power BI service")
+    persona("Deployer / workspace Admin (all rows)", exp["personas"][USERS["regionManager"]], 6)
+    for key, countries, name in (("regionManager", 6, "Isaac"), ("businessUser", 1, "Colin")):
+        upn, rls_role = USERS[key], BUSINESS_USERS[key]
+        try:
+            persona(f"{name} via RLS impersonation ({rls_role})", exp["personas"][upn], countries, upn)
+        except RuntimeError as exc:
+            failures.append(f"{name} RLS")
+            print(f"  FAIL {name} RLS: {str(exc)[:300]} -> add {upn} to the '{rls_role}' role in the Power BI service")
     if failures:
         raise SystemExit(f"{len(failures)} validation check(s) failed: {failures}")
     log("all validation checks passed")

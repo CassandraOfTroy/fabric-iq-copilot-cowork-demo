@@ -3,7 +3,7 @@
     Optional, after the demo (not a demo step): Laurence's fix at the source - update a contract price and refresh the model.
 .DESCRIPTION
     Pins the session to the repo-local Azure CLI profile, asserts the configured tenant, then runs
-    scripts/deploy/update_contract_price.py. Laurence Gilbertson (Data Analyst, Contributor on 'Caldova Finance')
+    scripts/deploy/update_contract_price.py. Laurence Gilbertson (Data Analyst, Admin on 'Caldova Finance')
     registers the price from the signed amendment in the contract data, and the semantic model is refreshed:
     Germany is back to 100%. -Reset returns to the demo start (amendment not registered).
 .EXAMPLE

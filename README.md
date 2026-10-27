@@ -48,10 +48,10 @@ Both Copilots query Power BI as the signed-in user. Copilot Chat "uses the user'
 
 | Person (sign-in) | Role | Sees in the data | In the demo |
 |---|---|---|---|
-| **Isaac Fielder** (IsaacF) | Region Manager Europe | All 6 countries | Power BI report and Copilot Chat; gets Colin's email and the meeting invite |
-| **Colin Ballinger** (ColinB) | Country Manager Germany | **Only Germany** (RLS) | Copilot Chat and Copilot Cowork |
+| **Isaac Fielder** (IsaacF) | Region Manager Europe | All 6 countries (RLS role *Region Manager*) | Power BI report and Copilot Chat; gets Colin's email and the meeting invite |
+| **Colin Ballinger** (ColinB) | Country Manager Germany | **Only Germany** (RLS role *Business User*) | Copilot Chat and Copilot Cowork |
 | **Charlotte Waltson** (CharlotteW) | Director, Pricing & Contracting; signed the amendment | Not used | Sends one seed email; cc on Colin's email to Laurence |
-| **Laurence Gilbertson** (LaurenceG) | Data Analyst, registers contract prices | All countries | Gets Colin's email and the meeting invite |
+| **Laurence Gilbertson** (LaurenceG) | Data Analyst, registers contract prices; owns the finance workspaces | All countries | Sends one seed email; gets Colin's email and the meeting invite |
 
 ## Set up
 
@@ -71,13 +71,20 @@ pwsh -File scripts/Test-TenantIsolation.ps1
 pwsh -File scripts/Deploy-CaldovaFinance.ps1
 ```
 
-The deploy creates the workspaces *Caldova Finance* (lakehouse, data, semantic model) and *Caldova Finance Insights* (report), loads the synthetic data and checks the numbers with DAX. Then add **ColinB** to the **Business User** role of the model in the Power BI service (model > **Security**). Scripts never add role members.
+The deploy creates the workspaces *Caldova Finance* (lakehouse, data, semantic model) and *Caldova Finance Insights* (report), loads the synthetic data and checks the numbers with DAX. Then, in the Power BI service, open the model's **Security** page and add the two business users to their RLS roles. Scripts never add role members.
 
-The result:
+- **IsaacF** to **Region Manager**;
+- **ColinB** to **Business User**.
 
-- Colin is a Viewer on *Caldova Finance Insights* and in the *Business User* role, so he sees only Germany.
-- Isaac is an Admin on both workspaces, so he sees every country: "RLS only restricts data access for users with **Viewer** permissions." ([Row-level security](https://learn.microsoft.com/fabric/security/service-admin-row-level-security))
-- Laurence is a Contributor on *Caldova Finance*.
+The result: Isaac and Colin are both business users. Neither has a role on *Caldova Finance*, where the model is, so RLS applies to both. "RLS only restricts data access for users with **Viewer** permissions. It doesn't apply to workspace **Admin**, **Member**, or **Contributor** roles." ([Row-level security](https://learn.microsoft.com/fabric/security/service-admin-row-level-security))
+
+| Person | *Caldova Finance* (data, model) | *Caldova Finance Insights* (report) | On the model | Sees |
+|---|---|---|---|---|
+| Laurence | Admin | Admin | Workspace role | All countries |
+| Isaac | None | Contributor | Read + Build; RLS role *Region Manager* | All 6 countries |
+| Colin | None | Viewer | Read + Build; RLS role *Business User* | Only Germany |
+
+Every business user needs an RLS role: "Users who aren't assigned to any RLS role typically see no data." ([Row-level security](https://learn.microsoft.com/fabric/security/service-admin-row-level-security))
 
 The sign-in uses a separate Azure CLI configuration folder (`AZURE_CONFIG_DIR`) inside the repo, so it never mixes with your usual account ([Azure CLI tips](https://learn.microsoft.com/cli/azure/use-azure-cli-successfully-tips)). The scripts also check the tenant ID of every token before they call Fabric.
 
@@ -87,7 +94,7 @@ The sign-in uses a separate Azure CLI configuration folder (`AZURE_CONFIG_DIR`) 
 
 Without this, Copilot can mix up the $16.5K flagged with the $147K AP will block, or read "last 4 weeks" as the calendar month. "Fabric IQ uses the measures, relationships, and business definitions in your semantic model to answer questions", and Prep data for AI adds the context it can't infer ([Ask data questions with Copilot and Fabric IQ](https://learn.microsoft.com/power-bi/create-reports/copilot-ask-data-question)). Prep data for AI is in preview.
 
-Sign in to Power BI as an Admin of *Caldova Finance*, open the semantic model **Supplier Invoice Assurance** and select **Prep data for AI** on the ribbon. If the tabs are greyed out, select **Turn on Q&A**.
+Sign in to Power BI as LaurenceG (or the account that ran the deploy), open the semantic model **Supplier Invoice Assurance** and select **Prep data for AI** on the ribbon. If the tabs are greyed out, select **Turn on Q&A**.
 
 **a. Add AI instructions.** On the **Add AI instructions** tab, paste this text and select **Apply**:
 
@@ -165,24 +172,25 @@ Charlotte Waltson
 Director, Pricing & Contracting
 ```
 
-**S3. Finance Shared Services to Colin and Charlotte** (from an admin account). Subject: **Reminder: contract-admin mailbox closed on 15 September - send contract price changes to Laurence Gilbertson**
+**S3. Laurence to Colin and Charlotte.** From LaurenceG. Subject: **Contract price changes: please send them to me from now on**
 
 ```text
-Dear colleagues,
+Hi Colin, hi Charlotte,
 
-A reminder: contract administration for the European affiliates moved to the Europe finance shared-service center in September. As part of this move, the contract-admin mailbox was closed on 15 September 2026. Messages sent to it after that date were not forwarded and were not processed.
+Contract administration for the European affiliates moved to the Europe finance shared-service center in September. As part of this move, the contract-admin mailbox was closed on 15 September 2026. Messages sent to it after that date were not forwarded and were not processed.
 
-From now on, send contract price changes directly to Laurence Gilbertson, Data Analyst, with the signed contract document attached. Laurence registers the price in the contract data and refreshes the Supplier Invoice Assurance model, so every report and Copilot answer uses it.
+From now on, I'm your contact for contract price changes. Please send them directly to me, with the signed contract document attached. I register the price in the contract data and refresh the Supplier Invoice Assurance model, so every report and Copilot answer uses it.
 
-If you sent a contract change to the contract-admin mailbox after 15 September, please send it again to Laurence.
+If you sent a contract change to the contract-admin mailbox after 15 September, please send it again to me.
 
-Kind regards,
-Finance Shared Services Europe
+Best regards,
+Laurence Gilbertson
+Data Analyst, Finance Shared Services Europe
 ```
 
 ### Step 4: Check the seed and Cowork (a few hours later, 10 minutes)
 
-As Colin, in Copilot at copilot.cloud.microsoft (**Chat**), ask: *What do my emails and files say about Annterra's contract price for Caldova Germany, and who registers contract prices now?* Expect the amendment ($4.45 from 5 Oct), Charlotte's request to the contract-admin mailbox (21 Sep) and the reminder that Laurence now registers prices. If Copilot finds nothing, wait a few hours and ask again.
+As Colin, in Copilot at copilot.cloud.microsoft (**Chat**), ask: *What do my emails and files say about Annterra's contract price for Caldova Germany, and who registers contract prices now?* Expect the amendment ($4.45 from 5 Oct), Charlotte's request to the contract-admin mailbox (21 Sep) and Laurence's email that he now registers contract prices. If Copilot finds nothing, wait a few hours and ask again.
 
 Then select **Cowork** in the top toggle and **Customize** in the left navigation ([Customize Cowork](https://learn.microsoft.com/microsoft-365/copilot/cowork/cowork-customize)):
 
@@ -251,7 +259,7 @@ Follow-up:
 Why didn't we register the correct price? What happened and how can we fix this?
 ```
 
-- **You'll see:** Germany only: 71.7%, 15 Annterra invoices, $16.5K flagged, $147K to block. Then the evidence: the signed amendment, Charlotte's request to the closed mailbox, and the reminder that Laurence now registers prices.
+- **You'll see:** Germany only: 71.7%, 15 Annterra invoices, $16.5K flagged, $147K to block. Then the evidence: the signed amendment, Charlotte's request to the closed mailbox, and Laurence's email that he now registers contract prices.
 - **Show:** Colin's report: he sees only Germany.
 - **Say:** "Same report, but Colin sees only Germany. Then Copilot finds what the data can't show: Charlotte signed the higher price to reserve Annterra's packing slots for Allerveo every week, and her request to update the data went to a closed mailbox. Annterra is right; our data is wrong."
 
@@ -304,6 +312,7 @@ Open Isaac's inbox, then Colin's email and the deck. Then show the invite for to
 | Copilot says AP will block $16.5K, or uses the wrong period | Prep data for AI isn't applied (Set up, Step 2). Start a new chat. |
 | Copilot calls Annterra a "contract manufacturer" | That's the supplier category in the data. Optional: also clear *Suppliers* > *Supplier Category* in the AI data schema. |
 | Colin sees all countries | Colin has a role on the *Caldova Finance* workspace, or he isn't in the *Business User* role. |
+| Isaac sees no data, or Copilot finds nothing for him | Isaac isn't in the *Region Manager* role of the model (Set up, Step 1). |
 | Copilot finds no amendment or emails | The seed isn't indexed yet: wait and ask again (Set up, Step 4). |
 | Cowork doesn't use the Power BI report | Check that the **Fabric IQ** plugin is on, or paste the report link. Cowork works with reports: "It doesn't currently ground on Power BI dashboards." ([Fabric IQ plugin in Copilot Cowork](https://learn.microsoft.com/fabric/iq/connectors/cowork-overview)) |
 | Cowork is slow | Switch to the rehearsal task and walk through its results. |

@@ -9,10 +9,11 @@
       model        Direct Lake semantic model 'Supplier Invoice Assurance' from fabric/ (TMDL)
       refresh      lakehouse metadata sync + model reframe
       connection   fixed identity (workspace identity, SSO off) for the Direct Lake connection
-      permissions  ColinB Read + Build on the model
+      permissions  IsaacF and ColinB Read + Build on the model
       reports      PBIR report 'Supplier Invoice Assurance' -> 'Caldova Finance Insights'
       validate     DAX checks against data/finance/expected_answers.json (+ Colin's RLS view)
-    RLS role members are never scripted: add ColinB to 'Business User' in the Power BI service.
+    RLS role members are never scripted: add IsaacF to 'Region Manager' and ColinB to 'Business User'
+    in the Power BI service.
     Manual steps (Prep data for AI, seeding, rehearsal) are in README.md.
 .EXAMPLE
     pwsh -File scripts\Deploy-CaldovaFinance.ps1                          # all steps

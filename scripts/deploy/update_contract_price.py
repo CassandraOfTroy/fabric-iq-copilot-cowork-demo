@@ -1,6 +1,6 @@
 """Optional, after the demo: Laurence's fix at the source (update a contract price and refresh the model).
 
-Laurence Gilbertson (Data Analyst, Contributor on 'Caldova Finance') receives Colin's email and registers the price
+Laurence Gilbertson (Data Analyst, Admin on 'Caldova Finance') receives Colin's email and registers the price
 from the signed contract amendment. In this demo the contract and invoice data live in the lakehouse LH_CaldovaFinance
 (Direct Lake model); at a customer they would live in the source database, e.g. Snowflake behind an Import or
 DirectQuery semantic model. Copilot answers reflect the data from the last refresh of the semantic model, so the step
