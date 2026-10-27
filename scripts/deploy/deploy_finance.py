@@ -19,7 +19,7 @@ Steps (run in order; each is safe to re-run):
   validate     DAX checks against data/finance/expected_answers.json (+ RLS impersonation once role members exist)
 
 Never adds or removes RLS role members: a person adds ColinB to the 'Business User' role in the Power BI service.
-Manual demo steps (Prep data for AI, seeding, rehearsal) are in the runbook under docs/.
+Manual demo steps (Prep data for AI, seeding, rehearsal) are in README.md.
 Usage:  pwsh -File scripts\\Deploy-CaldovaFinance.ps1 -Step workspaces,load,model,refresh,connection,permissions,validate
 """
 from __future__ import annotations
