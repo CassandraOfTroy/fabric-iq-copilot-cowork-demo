@@ -1,0 +1,40 @@
+/// Caldova countries (affiliates that receive supplier invoices), all in the Europe region. Use Country for any by-country or by-market question. Country managers see only their country.
+table Countries
+
+	/// Country key; joins Invoice Lines.
+	column 'Country ID'
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: CountryID
+
+	/// Caldova country (market): Germany, France, Italy, Spain, United Kingdom or Switzerland.
+	column Country
+		dataType: string
+		isDefaultLabel
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+	/// Two-letter country code, e.g. DE for Germany.
+	column 'Country Code'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+	/// Region of the country: Europe.
+	column Region
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Region
+
+	partition Countries = entity
+		mode: directLake
+		source
+			entityName: fin_countries
+			schemaName: dbo
+			expressionSource: 'DirectLake - Supplier Invoice Assurance'

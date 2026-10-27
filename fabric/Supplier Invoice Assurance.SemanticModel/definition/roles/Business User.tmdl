@@ -1,0 +1,23 @@
+/// Country managers (e.g. ColinB, Germany). Dynamic RLS: only invoices and contracts of the countries mapped to the signed-in UPN. Members are assigned in the Power BI service.
+role 'Business User'
+	modelPermission: read
+
+	tablePermission Countries =
+			VAR _allowedCountries =
+				CALCULATETABLE (
+					VALUES ( 'Security Country Access'[Country] ),
+					'Security Country Access'[User Principal Name] = USERPRINCIPALNAME ()
+				)
+			RETURN
+				Countries[Country] IN _allowedCountries
+
+	tablePermission Contracts =
+			VAR _allowedCountries =
+				CALCULATETABLE (
+					VALUES ( 'Security Country Access'[Country] ),
+					'Security Country Access'[User Principal Name] = USERPRINCIPALNAME ()
+				)
+			RETURN
+				Contracts[Contract Country] IN _allowedCountries
+
+	tablePermission 'Security Country Access' = 'Security Country Access'[User Principal Name] = USERPRINCIPALNAME ()

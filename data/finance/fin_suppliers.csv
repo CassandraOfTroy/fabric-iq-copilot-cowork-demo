@@ -1,0 +1,11 @@
+SupplierID,SupplierCode,SupplierName,SupplierCategory
+1,CM-001,Annterra Pharma,Contract Manufacturing (OSD)
+3,CM-003,Meridax Life Sciences,Contract Manufacturing (OSD)
+8,API-001,Quorvane Chemicals,Active Pharmaceutical Ingredients
+10,EXC-001,Lumexa Excipients,Excipients
+11,PKG-001,Pakvora Packaging,Packaging
+12,PKG-002,Corrindale Glass,Packaging
+13,LOG-001,Glacivo Cold Chain,Cold Chain Logistics
+15,LAB-001,Analytra Labs,Laboratory Services
+14,CMS-001,Sterivon Fill-Finish,Contract Manufacturing (Sterile)
+16,DEV-001,Dosmira Devices,Device Components

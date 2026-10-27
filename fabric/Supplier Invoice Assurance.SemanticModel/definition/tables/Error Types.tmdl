@@ -1,0 +1,45 @@
+/// Invoice error types found by checking each invoice against the contract and the goods receipt. No error = correct invoice.
+table 'Error Types'
+
+	/// Error type key; joins Invoice Lines.
+	column 'Error Type ID'
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: ErrorTypeID
+
+	/// Error type: Price above contract, Duplicate invoice, Billed more than delivered, or No error.
+	column 'Error Type'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ErrorType
+		sortByColumn: 'Sort Order'
+
+	/// What the error means, in plain words.
+	column 'Error Description'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ErrorDescription
+
+	/// Yes for a real error, No for No error.
+	column 'Is Error'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: IsError
+
+	/// Display order of the error types.
+	column 'Sort Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+	partition 'Error Types' = entity
+		mode: directLake
+		source
+			entityName: fin_error_types
+			schemaName: dbo
+			expressionSource: 'DirectLake - Supplier Invoice Assurance'

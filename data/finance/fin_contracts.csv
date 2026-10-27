@@ -1,0 +1,61 @@
+ContractID,ContractCode,ContractCountry,ContractName,PricingUnit,ContractUnitPrice,PriceLastUpdated,PaymentTerms,StartDate,EndDate
+101,CTR-ANN-DE,Germany,Annterra Pharma - Caldova Germany supply agreement,pack,3.9500,2025-01-01,Net 30,2025-01-01,2027-12-31
+102,CTR-MDX-DE,Germany,Meridax Life Sciences - Caldova Germany supply agreement,pack,5.1000,2025-01-01,Net 60,2025-01-01,2027-12-31
+103,CTR-QUO-DE,Germany,Quorvane Chemicals - Caldova Germany supply agreement,kg,1850.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+104,CTR-LUM-DE,Germany,Lumexa Excipients - Caldova Germany supply agreement,kg,12.5000,2025-01-01,Net 45,2025-01-01,2027-12-31
+105,CTR-PAK-DE,Germany,Pakvora Packaging - Caldova Germany supply agreement,thousand units,38.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+106,CTR-COR-DE,Germany,Corrindale Glass - Caldova Germany supply agreement,thousand vials,210.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+107,CTR-GLA-DE,Germany,Glacivo Cold Chain - Caldova Germany supply agreement,shipment,1450.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+108,CTR-ANA-DE,Germany,Analytra Labs - Caldova Germany supply agreement,test,420.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+109,CTR-STV-DE,Germany,Sterivon Fill-Finish - Caldova Germany supply agreement,batch,64800.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+110,CTR-DOS-DE,Germany,Dosmira Devices - Caldova Germany supply agreement,thousand units,1150.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+201,CTR-ANN-FR,France,Annterra Pharma - Caldova France supply agreement,pack,3.9500,2025-01-01,Net 30,2025-01-01,2027-12-31
+202,CTR-MDX-FR,France,Meridax Life Sciences - Caldova France supply agreement,pack,5.1000,2025-01-01,Net 60,2025-01-01,2027-12-31
+203,CTR-QUO-FR,France,Quorvane Chemicals - Caldova France supply agreement,kg,1850.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+204,CTR-LUM-FR,France,Lumexa Excipients - Caldova France supply agreement,kg,12.5000,2025-01-01,Net 45,2025-01-01,2027-12-31
+205,CTR-PAK-FR,France,Pakvora Packaging - Caldova France supply agreement,thousand units,38.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+206,CTR-COR-FR,France,Corrindale Glass - Caldova France supply agreement,thousand vials,210.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+207,CTR-GLA-FR,France,Glacivo Cold Chain - Caldova France supply agreement,shipment,1450.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+208,CTR-ANA-FR,France,Analytra Labs - Caldova France supply agreement,test,420.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+209,CTR-STV-FR,France,Sterivon Fill-Finish - Caldova France supply agreement,batch,64800.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+210,CTR-DOS-FR,France,Dosmira Devices - Caldova France supply agreement,thousand units,1150.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+301,CTR-ANN-IT,Italy,Annterra Pharma - Caldova Italy supply agreement,pack,3.9500,2025-01-01,Net 30,2025-01-01,2027-12-31
+302,CTR-MDX-IT,Italy,Meridax Life Sciences - Caldova Italy supply agreement,pack,5.1000,2025-01-01,Net 60,2025-01-01,2027-12-31
+303,CTR-QUO-IT,Italy,Quorvane Chemicals - Caldova Italy supply agreement,kg,1850.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+304,CTR-LUM-IT,Italy,Lumexa Excipients - Caldova Italy supply agreement,kg,12.5000,2025-01-01,Net 45,2025-01-01,2027-12-31
+305,CTR-PAK-IT,Italy,Pakvora Packaging - Caldova Italy supply agreement,thousand units,38.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+306,CTR-COR-IT,Italy,Corrindale Glass - Caldova Italy supply agreement,thousand vials,210.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+307,CTR-GLA-IT,Italy,Glacivo Cold Chain - Caldova Italy supply agreement,shipment,1450.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+308,CTR-ANA-IT,Italy,Analytra Labs - Caldova Italy supply agreement,test,420.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+309,CTR-STV-IT,Italy,Sterivon Fill-Finish - Caldova Italy supply agreement,batch,64800.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+310,CTR-DOS-IT,Italy,Dosmira Devices - Caldova Italy supply agreement,thousand units,1150.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+401,CTR-ANN-ES,Spain,Annterra Pharma - Caldova Spain supply agreement,pack,3.9500,2025-01-01,Net 30,2025-01-01,2027-12-31
+402,CTR-MDX-ES,Spain,Meridax Life Sciences - Caldova Spain supply agreement,pack,5.1000,2025-01-01,Net 60,2025-01-01,2027-12-31
+403,CTR-QUO-ES,Spain,Quorvane Chemicals - Caldova Spain supply agreement,kg,1850.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+404,CTR-LUM-ES,Spain,Lumexa Excipients - Caldova Spain supply agreement,kg,12.5000,2025-01-01,Net 45,2025-01-01,2027-12-31
+405,CTR-PAK-ES,Spain,Pakvora Packaging - Caldova Spain supply agreement,thousand units,38.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+406,CTR-COR-ES,Spain,Corrindale Glass - Caldova Spain supply agreement,thousand vials,210.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+407,CTR-GLA-ES,Spain,Glacivo Cold Chain - Caldova Spain supply agreement,shipment,1450.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+408,CTR-ANA-ES,Spain,Analytra Labs - Caldova Spain supply agreement,test,420.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+409,CTR-STV-ES,Spain,Sterivon Fill-Finish - Caldova Spain supply agreement,batch,64800.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+410,CTR-DOS-ES,Spain,Dosmira Devices - Caldova Spain supply agreement,thousand units,1150.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+501,CTR-ANN-GB,United Kingdom,Annterra Pharma - Caldova United Kingdom supply agreement,pack,3.9500,2025-01-01,Net 30,2025-01-01,2027-12-31
+502,CTR-MDX-GB,United Kingdom,Meridax Life Sciences - Caldova United Kingdom supply agreement,pack,5.1000,2025-01-01,Net 60,2025-01-01,2027-12-31
+503,CTR-QUO-GB,United Kingdom,Quorvane Chemicals - Caldova United Kingdom supply agreement,kg,1850.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+504,CTR-LUM-GB,United Kingdom,Lumexa Excipients - Caldova United Kingdom supply agreement,kg,12.5000,2025-01-01,Net 45,2025-01-01,2027-12-31
+505,CTR-PAK-GB,United Kingdom,Pakvora Packaging - Caldova United Kingdom supply agreement,thousand units,38.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+506,CTR-COR-GB,United Kingdom,Corrindale Glass - Caldova United Kingdom supply agreement,thousand vials,210.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+507,CTR-GLA-GB,United Kingdom,Glacivo Cold Chain - Caldova United Kingdom supply agreement,shipment,1450.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+508,CTR-ANA-GB,United Kingdom,Analytra Labs - Caldova United Kingdom supply agreement,test,420.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+509,CTR-STV-GB,United Kingdom,Sterivon Fill-Finish - Caldova United Kingdom supply agreement,batch,64800.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+510,CTR-DOS-GB,United Kingdom,Dosmira Devices - Caldova United Kingdom supply agreement,thousand units,1150.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+601,CTR-ANN-CH,Switzerland,Annterra Pharma - Caldova Switzerland supply agreement,pack,3.9500,2025-01-01,Net 30,2025-01-01,2027-12-31
+602,CTR-MDX-CH,Switzerland,Meridax Life Sciences - Caldova Switzerland supply agreement,pack,5.1000,2025-01-01,Net 60,2025-01-01,2027-12-31
+603,CTR-QUO-CH,Switzerland,Quorvane Chemicals - Caldova Switzerland supply agreement,kg,1850.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+604,CTR-LUM-CH,Switzerland,Lumexa Excipients - Caldova Switzerland supply agreement,kg,12.5000,2025-01-01,Net 45,2025-01-01,2027-12-31
+605,CTR-PAK-CH,Switzerland,Pakvora Packaging - Caldova Switzerland supply agreement,thousand units,38.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+606,CTR-COR-CH,Switzerland,Corrindale Glass - Caldova Switzerland supply agreement,thousand vials,210.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+607,CTR-GLA-CH,Switzerland,Glacivo Cold Chain - Caldova Switzerland supply agreement,shipment,1450.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+608,CTR-ANA-CH,Switzerland,Analytra Labs - Caldova Switzerland supply agreement,test,420.0000,2025-01-01,Net 30,2025-01-01,2027-12-31
+609,CTR-STV-CH,Switzerland,Sterivon Fill-Finish - Caldova Switzerland supply agreement,batch,64800.0000,2025-01-01,Net 60,2025-01-01,2027-12-31
+610,CTR-DOS-CH,Switzerland,Dosmira Devices - Caldova Switzerland supply agreement,thousand units,1150.0000,2025-01-01,Net 60,2025-01-01,2027-12-31

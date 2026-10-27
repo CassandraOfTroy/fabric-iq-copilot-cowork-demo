@@ -1,0 +1,32 @@
+{
+  "$comment": "Copy this file to config/tenant.json (git-ignored) and fill in your own tenant. Identifiers only, never credentials - sign-in is always interactive (MFA). Users are aliases; the scripts build the UPN as <alias>@<tenantDomain>.",
+  "tenantDomain": "<your-tenant>.onmicrosoft.com",
+  "tenantId": "00000000-0000-0000-0000-000000000000",
+  "subscriptionId": "<your-azure-subscription-id>",
+  "azureConfigDir": ".azure-demo-tenant",
+  "fabricCapacity": {
+    "$comment": "capacityId is only needed when the deployment has to create the workspaces (Fabric portal > Admin portal > Capacity settings, or GET /v1/capacities).",
+    "name": "<fabric-capacity-name>",
+    "resourceGroup": "<resource-group>",
+    "region": "<azure-region>",
+    "sku": "F4",
+    "capacityId": "<fabric-capacity-id>"
+  },
+  "users": {
+    "$comment": "regionManager = Isaac Fielder (Region Manager Europe, Admin on both workspaces, sees all countries); businessUser = Colin Ballinger (Country Manager Germany, Viewer on the Insights workspace, Read + Build on the model, RLS role member - added by a person in the portal); dataAnalyst = Laurence Gilbertson (Data Analyst, Contributor on the data workspace).",
+    "regionManager": "IsaacF",
+    "businessUser": "ColinB",
+    "dataAnalyst": "LaurenceG"
+  },
+  "fabric": {
+    "dataWorkspace": "Caldova Finance",
+    "insightsWorkspace": "Caldova Finance Insights",
+    "lakehouse": "LH_CaldovaFinance",
+    "semanticModel": "Supplier Invoice Assurance",
+    "report": "Supplier Invoice Assurance",
+    "rlsRole": "Business User",
+    "connectionName": "Caldova OneLake - Caldova Finance workspace identity"
+  },
+  "colinCountry": "Germany",
+  "region": "Europe"
+}

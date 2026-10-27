@@ -1,0 +1,5 @@
+/// Region managers (e.g. IsaacF, Region Manager Europe): every country in the Europe region. RLS applies only to Viewers; workspace Admins, Members and Contributors see all rows.
+role 'Region Manager'
+	modelPermission: read
+
+	tablePermission Countries = Countries[Region] = "Europe"

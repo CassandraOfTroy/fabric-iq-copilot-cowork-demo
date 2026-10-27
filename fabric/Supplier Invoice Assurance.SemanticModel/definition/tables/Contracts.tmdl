@@ -1,0 +1,78 @@
+/// Supplier contracts per Caldova country with the unit price held in the contract database; every invoice line is checked against it. One row per contract (supplier and country).
+table Contracts
+
+	/// Contract key; joins Invoice Lines.
+	column 'Contract ID'
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: ContractID
+
+	/// Contract code CTR-<supplier>-<country>, e.g. CTR-ANN-DE for Annterra Pharma in Germany.
+	column 'Contract Code'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ContractCode
+
+	/// Contract name with supplier and scope.
+	column 'Contract Name'
+		dataType: string
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: ContractName
+
+	/// Unit the contract price applies to: pack, kg, shipment, test, batch, thousand units or thousand vials.
+	column 'Pricing Unit'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: PricingUnit
+
+	/// Unit price in the contract database, in USD per pricing unit. The invoice check compares every billed unit price with it.
+	column 'Contract Unit Price'
+		dataType: decimal
+		formatString: \$#,0.00
+		summarizeBy: none
+		sourceColumn: ContractUnitPrice
+
+	/// Date the unit price was last changed in the contract database.
+	column 'Price Last Updated'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		summarizeBy: none
+		sourceColumn: PriceLastUpdated
+
+	/// Country of the Caldova affiliate that signed the contract. Used by row-level security.
+	column 'Contract Country'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: ContractCountry
+
+	/// Agreed payment terms, e.g. Net 60.
+	column 'Payment Terms'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: PaymentTerms
+
+	/// Contract start date.
+	column 'Contract Start'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		summarizeBy: none
+		sourceColumn: StartDate
+
+	/// Contract end date.
+	column 'Contract End'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		summarizeBy: none
+		sourceColumn: EndDate
+
+	partition Contracts = entity
+		mode: directLake
+		source
+			entityName: fin_contracts
+			schemaName: dbo
+			expressionSource: 'DirectLake - Supplier Invoice Assurance'

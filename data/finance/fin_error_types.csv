@@ -1,0 +1,5 @@
+ErrorTypeID,ErrorType,ErrorDescription,IsError,SortOrder
+0,No error,"The invoice matches the contract price in the contract database and the delivered quantity, and it is billed once.",No,1
+1,Price above contract,The unit price on the invoice is higher than the contract price in the contract database.,Yes,2
+2,Duplicate invoice,The same delivery was invoiced again on a second invoice.,Yes,3
+3,Billed more than delivered,The invoiced quantity is higher than the quantity in the goods receipt.,Yes,4

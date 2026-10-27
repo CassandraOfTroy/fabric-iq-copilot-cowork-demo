@@ -1,0 +1,24 @@
+/// Row-level security mapping: the countries each country manager (UPN) may see. Maintained by the model owner; hidden from report and Copilot users.
+table 'Security Country Access'
+	isHidden
+
+	/// User principal name (sign-in), e.g. ColinB@<your-tenant>.onmicrosoft.com.
+	column 'User Principal Name'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: UserPrincipalName
+
+	/// Country the user may see; matches Countries[Country].
+	column Country
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: Country
+
+	partition 'Security Country Access' = entity
+		mode: directLake
+		source
+			entityName: fin_security_country_access
+			schemaName: dbo
+			expressionSource: 'DirectLake - Supplier Invoice Assurance'

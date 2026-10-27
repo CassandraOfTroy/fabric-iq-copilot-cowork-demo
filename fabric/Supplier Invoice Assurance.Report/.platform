@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.1.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Supplier Invoice Assurance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7cd59e04-f1f0-45e5-90d9-3d68757854d0"
+  }
+}

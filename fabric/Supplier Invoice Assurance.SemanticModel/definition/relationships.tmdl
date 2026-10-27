@@ -1,0 +1,24 @@
+relationship 'Invoice Lines to Countries'
+	relyOnReferentialIntegrity
+	fromColumn: 'Invoice Lines'.'Country ID'
+	toColumn: Countries.'Country ID'
+
+relationship 'Invoice Lines to Suppliers'
+	relyOnReferentialIntegrity
+	fromColumn: 'Invoice Lines'.'Supplier ID'
+	toColumn: Suppliers.'Supplier ID'
+
+relationship 'Invoice Lines to Contracts'
+	relyOnReferentialIntegrity
+	fromColumn: 'Invoice Lines'.'Contract ID'
+	toColumn: Contracts.'Contract ID'
+
+relationship 'Invoice Lines to Error Types'
+	relyOnReferentialIntegrity
+	fromColumn: 'Invoice Lines'.'Error Type ID'
+	toColumn: 'Error Types'.'Error Type ID'
+
+relationship 'Invoice Lines to Date'
+	relyOnReferentialIntegrity
+	fromColumn: 'Invoice Lines'.'Invoice Date'
+	toColumn: Date.Date

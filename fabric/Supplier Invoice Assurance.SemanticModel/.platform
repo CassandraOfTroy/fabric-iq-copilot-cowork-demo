@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Supplier Invoice Assurance",
+    "description": "Caldova supplier invoices checked against contracts and goods receipts, by country (Europe), Direct Lake on LH_CaldovaFinance. Country managers see only their country (RLS)."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5fdde9e1-c243-43b5-983c-b7f6a84c1409"
+  }
+}

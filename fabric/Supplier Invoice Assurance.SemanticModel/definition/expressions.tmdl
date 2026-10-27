@@ -1,0 +1,6 @@
+/// Direct Lake on OneLake source: LH_CaldovaFinance in the Caldova Finance workspace. Placeholders are replaced by scripts/deploy at deploy time.
+expression 'DirectLake - Supplier Invoice Assurance' =
+		let
+			Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/{{WORKSPACE_ID}}/{{LAKEHOUSE_ID}}", [HierarchicalNavigation=true])
+		in
+			Source

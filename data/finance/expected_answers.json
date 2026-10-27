@@ -1,0 +1,303 @@
+{
+  "as_of": "2026-10-23",
+  "last_4_weeks": "28 Sep - 23 Oct 2026",
+  "previous_4_weeks": "31 Aug - 27 Sep 2026",
+  "amendment_registered": false,
+  "windows": {
+    "last_4_weeks": [
+      "2026-09-28",
+      "2026-10-23"
+    ],
+    "previous_4_weeks": [
+      "2026-08-31",
+      "2026-09-27"
+    ]
+  },
+  "personas": {
+    "IsaacF@{{TENANT_DOMAIN}}": {
+      "last_4_weeks": {
+        "invoices": 319,
+        "invoices_with_errors": 19,
+        "invoice_accuracy_pct": 94.0,
+        "invoiced_usd": 3826692.5,
+        "overbilled_usd": 22155.0,
+        "overbilling_pct": 0.6,
+        "payments_to_block_usd": 167892.5,
+        "invoices_to_block": 19,
+        "by_error_type": {
+          "Price above contract": {
+            "overbilled_usd": 16735.0,
+            "invoices": 16
+          },
+          "Duplicate invoice": {
+            "overbilled_usd": 2900.0,
+            "invoices": 1
+          },
+          "Billed more than delivered": {
+            "overbilled_usd": 2520.0,
+            "invoices": 2
+          }
+        },
+        "suppliers_with_overbilling": 5
+      },
+      "previous_4_weeks": {
+        "invoices": 318,
+        "invoices_with_errors": 1,
+        "invoice_accuracy_pct": 99.7,
+        "invoiced_usd": 3813842.5,
+        "overbilled_usd": 500.0,
+        "overbilling_pct": 0.0,
+        "payments_to_block_usd": 0.0,
+        "invoices_to_block": 0,
+        "by_error_type": {
+          "Price above contract": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          },
+          "Duplicate invoice": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          },
+          "Billed more than delivered": {
+            "overbilled_usd": 500.0,
+            "invoices": 1
+          }
+        },
+        "suppliers_with_overbilling": 1
+      },
+      "last_4_weeks_overbilled_by_country": {
+        "Germany": 16525.0,
+        "Switzerland": 2900.0,
+        "Italy": 1680.0,
+        "France": 840.0,
+        "Spain": 210.0
+      },
+      "last_4_weeks_accuracy_by_country": {
+        "Germany": 71.7,
+        "France": 98.1,
+        "Italy": 98.1,
+        "Spain": 98.1,
+        "United Kingdom": 100.0,
+        "Switzerland": 98.1
+      },
+      "last_4_weeks_overbilled_by_supplier": {
+        "Annterra Pharma": 16525.0,
+        "Glacivo Cold Chain": 2900.0,
+        "Corrindale Glass": 1680.0,
+        "Analytra Labs": 840.0,
+        "Pakvora Packaging": 210.0
+      },
+      "last_4_weeks_overbilled_by_supplier_and_error": {
+        "Annterra Pharma | Price above contract": 16525.0,
+        "Glacivo Cold Chain | Duplicate invoice": 2900.0,
+        "Corrindale Glass | Billed more than delivered": 1680.0,
+        "Analytra Labs | Billed more than delivered": 840.0,
+        "Pakvora Packaging | Price above contract": 210.0
+      },
+      "last_4_weeks_after_registration": {
+        "invoices": 319,
+        "invoices_with_errors": 4,
+        "invoice_accuracy_pct": 98.7,
+        "invoiced_usd": 3826692.5,
+        "overbilled_usd": 5630.0,
+        "overbilling_pct": 0.1,
+        "payments_to_block_usd": 20820.0,
+        "invoices_to_block": 4,
+        "by_error_type": {
+          "Price above contract": {
+            "overbilled_usd": 210.0,
+            "invoices": 1
+          },
+          "Duplicate invoice": {
+            "overbilled_usd": 2900.0,
+            "invoices": 1
+          },
+          "Billed more than delivered": {
+            "overbilled_usd": 2520.0,
+            "invoices": 2
+          }
+        },
+        "suppliers_with_overbilling": 4
+      },
+      "weekly_invoice_accuracy_pct": {
+        "2026-07-06": 100.0,
+        "2026-07-13": 100.0,
+        "2026-07-20": 100.0,
+        "2026-07-27": 100.0,
+        "2026-08-03": 100.0,
+        "2026-08-10": 97.6,
+        "2026-08-17": 100.0,
+        "2026-08-24": 100.0,
+        "2026-08-31": 100.0,
+        "2026-09-07": 98.8,
+        "2026-09-14": 100.0,
+        "2026-09-21": 100.0,
+        "2026-09-28": 98.7,
+        "2026-10-05": 92.9,
+        "2026-10-12": 93.6,
+        "2026-10-19": 91.1
+      },
+      "weekly_overbilled_usd": {
+        "2026-07-06": 0.0,
+        "2026-07-13": 0.0,
+        "2026-07-20": 0.0,
+        "2026-07-27": 0.0,
+        "2026-08-03": 0.0,
+        "2026-08-10": 2700.0,
+        "2026-08-17": 0.0,
+        "2026-08-24": 0.0,
+        "2026-08-31": 0.0,
+        "2026-09-07": 500.0,
+        "2026-09-14": 0.0,
+        "2026-09-21": 0.0,
+        "2026-09-28": 840.0,
+        "2026-10-05": 7180.0,
+        "2026-10-12": 5500.0,
+        "2026-10-19": 8635.0
+      }
+    },
+    "ColinB@{{TENANT_DOMAIN}}": {
+      "last_4_weeks": {
+        "invoices": 53,
+        "invoices_with_errors": 15,
+        "invoice_accuracy_pct": 71.7,
+        "invoiced_usd": 902905.0,
+        "overbilled_usd": 16525.0,
+        "overbilling_pct": 1.8,
+        "payments_to_block_usd": 147072.5,
+        "invoices_to_block": 15,
+        "by_error_type": {
+          "Price above contract": {
+            "overbilled_usd": 16525.0,
+            "invoices": 15
+          },
+          "Duplicate invoice": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          },
+          "Billed more than delivered": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          }
+        },
+        "suppliers_with_overbilling": 1
+      },
+      "previous_4_weeks": {
+        "invoices": 53,
+        "invoices_with_errors": 0,
+        "invoice_accuracy_pct": 100.0,
+        "invoiced_usd": 868135.0,
+        "overbilled_usd": 0.0,
+        "overbilling_pct": 0.0,
+        "payments_to_block_usd": 0.0,
+        "invoices_to_block": 0,
+        "by_error_type": {
+          "Price above contract": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          },
+          "Duplicate invoice": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          },
+          "Billed more than delivered": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          }
+        },
+        "suppliers_with_overbilling": 0
+      },
+      "last_4_weeks_overbilled_by_country": {
+        "Germany": 16525.0
+      },
+      "last_4_weeks_accuracy_by_country": {
+        "Germany": 71.7
+      },
+      "last_4_weeks_overbilled_by_supplier": {
+        "Annterra Pharma": 16525.0
+      },
+      "last_4_weeks_overbilled_by_supplier_and_error": {
+        "Annterra Pharma | Price above contract": 16525.0
+      },
+      "last_4_weeks_after_registration": {
+        "invoices": 53,
+        "invoices_with_errors": 0,
+        "invoice_accuracy_pct": 100.0,
+        "invoiced_usd": 902905.0,
+        "overbilled_usd": 0.0,
+        "overbilling_pct": 0.0,
+        "payments_to_block_usd": 0.0,
+        "invoices_to_block": 0,
+        "by_error_type": {
+          "Price above contract": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          },
+          "Duplicate invoice": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          },
+          "Billed more than delivered": {
+            "overbilled_usd": 0.0,
+            "invoices": 0
+          }
+        },
+        "suppliers_with_overbilling": 0
+      },
+      "weekly_invoice_accuracy_pct": {
+        "2026-07-06": 100.0,
+        "2026-07-13": 100.0,
+        "2026-07-20": 100.0,
+        "2026-07-27": 100.0,
+        "2026-08-03": 100.0,
+        "2026-08-10": 100.0,
+        "2026-08-17": 100.0,
+        "2026-08-24": 100.0,
+        "2026-08-31": 100.0,
+        "2026-09-07": 100.0,
+        "2026-09-14": 100.0,
+        "2026-09-21": 100.0,
+        "2026-09-28": 100.0,
+        "2026-10-05": 64.3,
+        "2026-10-12": 61.5,
+        "2026-10-19": 61.5
+      },
+      "weekly_overbilled_usd": {
+        "2026-07-06": 0.0,
+        "2026-07-13": 0.0,
+        "2026-07-20": 0.0,
+        "2026-07-27": 0.0,
+        "2026-08-03": 0.0,
+        "2026-08-10": 0.0,
+        "2026-08-17": 0.0,
+        "2026-08-24": 0.0,
+        "2026-08-31": 0.0,
+        "2026-09-07": 0.0,
+        "2026-09-14": 0.0,
+        "2026-09-21": 0.0,
+        "2026-09-28": 0.0,
+        "2026-10-05": 5500.0,
+        "2026-10-12": 5500.0,
+        "2026-10-19": 5525.0
+      }
+    }
+  },
+  "annterra_germany_amendment": {
+    "contract_code": "CTR-ANN-DE",
+    "signed": "2026-09-18",
+    "effective": "2026-10-05",
+    "amended_price": 4.45,
+    "original_price": 3.95,
+    "payment_terms": "Net 30",
+    "price_in_contract_database": 3.95,
+    "invoices_since_effective": 15,
+    "packs": 33050,
+    "invoiced_usd": 147072.5,
+    "flagged_as_overbilled_usd": 16525.0,
+    "invoices_not_yet_paid": 15,
+    "invoice_value_not_yet_paid_usd": 147072.5,
+    "invoices_due_in_next_two_weeks": 3,
+    "invoice_value_due_in_next_two_weeks_usd": 29592.5,
+    "first_due_date": "2026-11-04"
+  }
+}

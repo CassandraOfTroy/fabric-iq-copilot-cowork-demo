@@ -1,0 +1,106 @@
+/// Calendar, one row per day (Jan 2025 to Dec 2026). Invoice data runs to Fri 23 Oct 2026. Last 4 weeks = 28 Sep - 23 Oct 2026 (Weeks Ago 0 to 3).
+table Date
+	dataCategory: Time
+
+	/// Calendar date.
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: dd mmm yyyy
+		summarizeBy: none
+		sourceColumn: Date
+
+	/// Calendar year.
+	column Year
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Year
+
+	/// Calendar quarter, Q1 to Q4.
+	column Quarter
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	/// Year and quarter, e.g. 2026 Q4.
+	column 'Year Quarter'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: YearQuarter
+
+	/// Month number, 1 to 12.
+	column 'Month Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: MonthNumber
+
+	/// Month name, Jan to Dec.
+	column Month
+		dataType: string
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: 'Month Number'
+
+	/// Month and year, e.g. Sep 2026. Use for monthly trends.
+	column 'Year Month'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: YearMonth
+		sortByColumn: 'Year Month Number'
+
+	/// Sort key for Year Month, e.g. 202609.
+	column 'Year Month Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: YearMonthNumber
+
+	/// First day of the month.
+	column 'Month Start'
+		dataType: dateTime
+		formatString: mmm yyyy
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+	/// Monday that starts the week. Sort key for Week.
+	column 'Week Start'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		summarizeBy: none
+		sourceColumn: WeekStart
+
+	/// Week label = its Monday, e.g. 05 Oct (week of Mon 5 Oct 2026). Use for weekly trends.
+	column Week
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Week
+		sortByColumn: 'Week Start'
+
+	/// Weeks before the latest data week: 0 = week of Mon 19 Oct 2026 (data to Fri 23 Oct). Last 4 weeks = 0 to 3.
+	column 'Weeks Ago'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: WeeksAgo
+
+	hierarchy Calendar
+
+		level Year
+			column: Year
+
+		level Quarter
+			column: Quarter
+
+		level Month
+			column: Month
+
+	partition Date = entity
+		mode: directLake
+		source
+			entityName: fin_date
+			schemaName: dbo
+			expressionSource: 'DirectLake - Supplier Invoice Assurance'

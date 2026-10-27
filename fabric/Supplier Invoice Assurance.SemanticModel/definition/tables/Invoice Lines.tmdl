@@ -1,0 +1,274 @@
+/// Supplier invoice lines checked against the unit price in the contract database and the goods receipt, by Caldova country (Europe), 1 Jan 2025 to 23 Oct 2026, USD. Last 4 weeks = 28 Sep - 23 Oct 2026.
+table 'Invoice Lines'
+
+	/// Total billed by suppliers in USD. Use for spend or invoiced amount.
+	measure 'Invoiced Amount' = SUM ( 'Invoice Lines'[Line Billed Amount] )
+		formatString: \$#,0
+		displayFolder: Spend
+
+	/// What Caldova should have paid under the supplier contract for what was actually delivered, in USD.
+	measure 'Contracted Amount' = SUM ( 'Invoice Lines'[Line Contract Amount] )
+		formatString: \$#,0
+		displayFolder: Spend
+
+	/// Price above contract, Duplicate invoice, Billed more than delivered: billed above the contract price in the contract database or the delivered quantity, or billed twice.
+	measure 'Overbilled Amount' = SUM ( 'Invoice Lines'[Line Overbilled Amount] )
+		formatString: \$#,0
+		displayFolder: Overbilling
+
+	/// Overbilling already recovered from suppliers through credit notes, in USD.
+	measure 'Recovered Amount' = SUM ( 'Invoice Lines'[Line Recovered Amount] )
+		formatString: \$#,0
+		displayFolder: Overbilling
+
+	/// Overbilling not yet recovered, in USD: what Caldova still has to claim back or block.
+	measure 'Amount at Risk' = [Overbilled Amount] - [Recovered Amount]
+		formatString: \$#,0
+		displayFolder: Overbilling
+
+	/// Overbilling on invoices not yet paid, in USD. This money can still be blocked before the next payment run.
+	measure 'Overbilled Not Yet Paid' =
+			CALCULATE ( [Overbilled Amount], KEEPFILTERS ( 'Invoice Lines'[Payment Status] = "Not yet paid" ) )
+		formatString: \$#,0
+		displayFolder: Overbilling
+
+	/// Full value of not-yet-paid invoices with an error (Next Step = Block payment), in USD: what Accounts Payable holds back in the next payment run.
+	measure 'Payments to Block' =
+			CALCULATE ( [Invoiced Amount], KEEPFILTERS ( 'Invoice Lines'[Next Step] = "Block payment" ) )
+		formatString: \$#,0
+		displayFolder: Overbilling
+
+	/// Number of not-yet-paid invoices with an error that Accounts Payable blocks (Next Step = Block payment).
+	measure 'Invoices to Block' =
+			CALCULATE ( [Invoices], KEEPFILTERS ( 'Invoice Lines'[Next Step] = "Block payment" ) )
+		formatString: #,0
+		displayFolder: Overbilling
+
+	/// Overbilled amount as a share of the invoiced amount.
+	measure 'Overbilling %' = DIVIDE ( [Overbilled Amount], [Invoiced Amount] )
+		formatString: 0.0%
+		displayFolder: Overbilling
+
+	/// Number of suppliers with at least one overbilled invoice.
+	measure 'Suppliers with Overbilling' =
+			CALCULATE (
+				DISTINCTCOUNT ( 'Invoice Lines'[Supplier ID] ),
+				KEEPFILTERS ( 'Invoice Lines'[Line Overbilled Amount] > 0 )
+			)
+		formatString: #,0
+		displayFolder: Overbilling
+
+	/// Overbilled in USD because the invoice unit price is above the contract price in the contract database. Use for suppliers charging more than the contract.
+	measure 'Price Above Contract Amount' =
+			CALCULATE ( [Overbilled Amount], KEEPFILTERS ( 'Error Types'[Error Type] = "Price above contract" ) )
+		formatString: \$#,0
+		displayFolder: Overbilling by error type
+
+	/// Overbilled in USD because the same delivery was invoiced twice. Use for duplicate invoices.
+	measure 'Duplicate Invoice Amount' =
+			CALCULATE ( [Overbilled Amount], KEEPFILTERS ( 'Error Types'[Error Type] = "Duplicate invoice" ) )
+		formatString: \$#,0
+		displayFolder: Overbilling by error type
+
+	/// Overbilled in USD because the invoiced quantity is above the quantity in the goods receipt. Use for billed more than delivered.
+	measure 'Billed Above Delivered Amount' =
+			CALCULATE ( [Overbilled Amount], KEEPFILTERS ( 'Error Types'[Error Type] = "Billed more than delivered" ) )
+		formatString: \$#,0
+		displayFolder: Overbilling by error type
+
+	/// Number of invoices with a unit price above the contract price in the contract database.
+	measure 'Invoices Priced Above Contract' =
+			CALCULATE ( [Invoices], KEEPFILTERS ( 'Error Types'[Error Type] = "Price above contract" ) )
+		formatString: #,0
+		displayFolder: Overbilling by error type
+
+	/// Number of duplicate invoices: a second invoice for a delivery that was already invoiced.
+	measure 'Duplicate Invoices' =
+			CALCULATE ( [Invoices], KEEPFILTERS ( 'Error Types'[Error Type] = "Duplicate invoice" ) )
+		formatString: #,0
+		displayFolder: Overbilling by error type
+
+	/// Number of invoices that bill more than the quantity in the goods receipt.
+	measure 'Invoices Billed Above Delivered' =
+			CALCULATE ( [Invoices], KEEPFILTERS ( 'Error Types'[Error Type] = "Billed more than delivered" ) )
+		formatString: #,0
+		displayFolder: Overbilling by error type
+
+	/// Number of supplier invoices.
+	measure Invoices = DISTINCTCOUNT ( 'Invoice Lines'[Invoice Number] )
+		formatString: #,0
+		displayFolder: Invoice accuracy
+
+	/// Number of invoices with an error: price above contract, duplicate invoice or billed more than delivered.
+	measure 'Invoices with Errors' =
+			CALCULATE ( [Invoices], KEEPFILTERS ( 'Error Types'[Is Error] = "Yes" ) )
+		formatString: #,0
+		displayFolder: Invoice accuracy
+
+	/// Share of invoices with no error, i.e. matching the contract price and the delivered quantity, billed once. Use for invoice accuracy.
+	measure 'Invoice Accuracy %' =
+			VAR _invoices = [Invoices]
+			RETURN
+				DIVIDE ( _invoices - [Invoices with Errors], _invoices )
+		formatString: 0.0%
+		displayFolder: Invoice accuracy
+
+	/// Invoice accuracy in the 4 weeks before the selected dates, e.g. 31 Aug - 27 Sep 2026 when the last 4 weeks (28 Sep - 23 Oct 2026) are selected.
+	measure 'Invoice Accuracy % Previous 4 Weeks' = CALCULATE ( [Invoice Accuracy %], DATEADD ( 'Date'[Date], -28, DAY ) )
+		formatString: 0.0%
+		displayFolder: Invoice accuracy
+
+	/// Supplier invoice number, e.g. ANN-DE-261005 (supplier, country, invoice date yymmdd). Suffix -R = the same delivery invoiced again.
+	column 'Invoice Number'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: InvoiceNumber
+
+	/// Invoice date. Joins the Date table; use it for weeks and months.
+	column 'Invoice Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		summarizeBy: none
+		sourceColumn: InvoiceDate
+
+	/// Contractual due date: invoice date plus the payment terms.
+	column 'Due Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		summarizeBy: none
+		sourceColumn: DueDate
+
+	/// Date the invoice was paid. Blank when not yet paid.
+	column 'Paid Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		summarizeBy: none
+		sourceColumn: PaidDate
+
+	/// Paid, or Not yet paid on 23 Oct 2026.
+	column 'Payment Status'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: PaymentStatus
+
+	/// Country key; joins Countries.
+	column 'Country ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: CountryID
+
+	/// Supplier key; joins Suppliers.
+	column 'Supplier ID'
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: SupplierID
+
+	/// Contract key; joins Contracts.
+	column 'Contract ID'
+		dataType: int64
+		isHidden
+		isAvailableInMdx: false
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: ContractID
+
+	/// Error type key; joins Error Types.
+	column 'Error Type ID'
+		dataType: int64
+		isHidden
+		isAvailableInMdx: false
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: ErrorTypeID
+
+	/// What was billed, e.g. Finished packs, oral solid dose.
+	column 'Line Description'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: LineDescription
+
+	/// Unit for quantities and prices: pack, kg, shipment, test, batch, thousand units or thousand vials.
+	column 'Unit of Measure'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: UnitOfMeasure
+
+	/// Quantity on the invoice, in the unit of measure.
+	column 'Billed Quantity'
+		dataType: decimal
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: BilledQuantity
+
+	/// Quantity received in the goods receipt, in the unit of measure.
+	column 'Delivered Quantity'
+		dataType: decimal
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: DeliveredQuantity
+
+	/// Unit price on the invoice, in USD.
+	column 'Billed Unit Price'
+		dataType: decimal
+		formatString: \$#,0.00
+		summarizeBy: none
+		sourceColumn: BilledUnitPrice
+
+	/// Contract price in the contract database on the invoice date, in USD.
+	column 'Contract Unit Price'
+		dataType: decimal
+		formatString: \$#,0.00
+		summarizeBy: none
+		sourceColumn: ContractUnitPrice
+
+	/// Line amount billed, in USD. Aggregated by Invoiced Amount.
+	column 'Line Billed Amount'
+		dataType: decimal
+		isHidden
+		summarizeBy: none
+		sourceColumn: BilledAmount
+
+	/// Line amount due under the contract, in USD. Aggregated by Contracted Amount.
+	column 'Line Contract Amount'
+		dataType: decimal
+		isHidden
+		summarizeBy: none
+		sourceColumn: ContractAmount
+
+	/// Line amount billed above the contract, in USD. Aggregated by Overbilled Amount.
+	column 'Line Overbilled Amount'
+		dataType: decimal
+		isHidden
+		summarizeBy: none
+		sourceColumn: OverbilledAmount
+
+	/// Line overbilling recovered through a credit note, in USD. Aggregated by Recovered Amount.
+	column 'Line Recovered Amount'
+		dataType: decimal
+		isHidden
+		isAvailableInMdx: false
+		summarizeBy: none
+		sourceColumn: RecoveredAmount
+
+	/// Not needed (no error), Open (overbilling not yet recovered) or Recovered.
+	column 'Recovery Status'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RecoveryStatus
+
+	/// What to do: Block payment (wrong and not yet paid), Claim credit note (wrong and already paid), Recovered, or None.
+	column 'Next Step'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: NextStep
+
+	partition 'Invoice Lines' = entity
+		mode: directLake
+		source
+			entityName: fin_invoice_lines
+			schemaName: dbo
+			expressionSource: 'DirectLake - Supplier Invoice Assurance'

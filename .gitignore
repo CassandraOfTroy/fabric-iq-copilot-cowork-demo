@@ -1,0 +1,10 @@
+# Local tenant config, CLI profiles, deployment state, tools (scripts/)
+config/tenant.json
+.azure-*/
+.deploy-state/
+.tools/
+.venv/
+__pycache__/
+.env
+.env.*
+~$*

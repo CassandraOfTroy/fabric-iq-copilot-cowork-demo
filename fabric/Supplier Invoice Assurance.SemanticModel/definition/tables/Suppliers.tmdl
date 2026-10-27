@@ -1,0 +1,37 @@
+/// Suppliers that invoice Caldova in Europe, one row each (10 suppliers). Use Supplier Name to list suppliers.
+table Suppliers
+
+	/// Supplier key; joins Invoice Lines.
+	column 'Supplier ID'
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: SupplierID
+
+	/// Vendor account code, e.g. CM-001 for Annterra Pharma.
+	column 'Supplier Code'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: SupplierCode
+
+	/// Supplier name. Default label when listing suppliers.
+	column 'Supplier Name'
+		dataType: string
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: SupplierName
+
+	/// What the supplier provides, e.g. Contract Manufacturing (OSD), Packaging, Cold Chain Logistics.
+	column 'Supplier Category'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: SupplierCategory
+
+	partition Suppliers = entity
+		mode: directLake
+		source
+			entityName: fin_suppliers
+			schemaName: dbo
+			expressionSource: 'DirectLake - Supplier Invoice Assurance'
