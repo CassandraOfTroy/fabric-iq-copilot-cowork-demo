@@ -71,20 +71,61 @@ pwsh -File scripts/Test-TenantIsolation.ps1
 pwsh -File scripts/Deploy-CaldovaFinance.ps1
 ```
 
-The deploy creates the workspaces *Caldova Finance* (lakehouse, data, semantic model) and *Caldova Finance Insights* (report), loads the synthetic data and checks the numbers with DAX. Then, in the Power BI service, open the model's **Security** page and add the two business users to their RLS roles. Scripts never add role members.
+The deploy loads the synthetic data, publishes the model and the report, sets the permissions and checks the numbers with DAX. It creates two workspaces:
+
+- ***Caldova Finance*** holds the data: the lakehouse and the semantic model. Only Laurence (Data Analyst) works here.
+- ***Caldova Finance Insights*** is for business users: the report. Isaac and Colin open it, and Copilot reads it on their behalf.
+
+```mermaid
+flowchart LR
+  subgraph FIN["Workspace:#nbsp;Caldova#nbsp;Finance"]
+    direction TB
+    FA["<b>Who has access</b><br/>Laurence: Admin"]
+    LH[("Lakehouse<br/>LH_CaldovaFinance<br/>7 synthetic tables")]
+    SM["<b>Semantic model</b><br/>Supplier Invoice Assurance<br/>Direct Lake<br/><br/>Read + Build: Isaac, Colin<br/>RLS Region Manager: Isaac, 6 countries<br/>RLS Business User: Colin, Germany"]
+    LH --> SM
+  end
+  subgraph INS["Workspace:#nbsp;Caldova#nbsp;Finance#nbsp;Insights"]
+    direction TB
+    IA["<b>Who has access</b><br/>Laurence: Admin<br/>Isaac: Contributor<br/>Colin: Viewer"]
+    RPT["<b>Power BI report</b><br/>Supplier Invoice Assurance"]
+    AG["<b>Data agent</b><br/>Caldova Finance Agent<br/><i>optional, created by hand</i>"]
+  end
+  SM -- live connection --> RPT
+  SM -. optional .-> AG
+  RPT --> CP["Microsoft 365 Copilot Chat<br/>and Copilot Cowork<br/>via Fabric IQ"]
+  classDef ws fill:#f3f8fc,stroke:#0078d4;
+  classDef access fill:#fff8e1,stroke:#c9a227;
+  classDef opt stroke-dasharray: 4 3;
+  class FIN,INS ws;
+  class FA,IA access;
+  class AG opt;
+```
+
+**The semantic model** is a star schema in Direct Lake mode on the lakehouse tables:
+
+- **Fact table:** *Invoice Lines*, one row per invoice line from 1 Jan 2025 to 23 Oct 2026. Each line has the billed price, the contract price and the next step, for example "Block payment".
+- **Dimensions:** *Suppliers* (10), *Countries* (6, all Europe), *Contracts* (the price in the contract data), *Error Types* and *Date*.
+- **Measures:** 20, such as *Invoice Accuracy %*, *Overbilled Amount* and *Payments to Block*.
+- **Hidden table:** *Security Country Access* maps each country manager to their countries for RLS.
+- **Data access:** the model reads the lakehouse through a connection that signs in with the workspace's identity. Isaac and Colin never need access to the lakehouse.
+
+**Not in the model:** for simplicity, products aren't included. Annterra's lines show only the supplier category, the description "Finished packs, oral solid dose" and the unit "pack". That these are Allerveo packs is only in the signed amendment.
+
+**Then add the business users to their RLS roles.** Scripts never add role members. In the Power BI service, open *Caldova Finance*. Next to **Supplier Invoice Assurance**, select **...** > **Security**, then add:
 
 - **IsaacF** to **Region Manager**;
 - **ColinB** to **Business User**.
 
-The result: Isaac and Colin are both business users. Neither has a role on *Caldova Finance*, where the model is, so RLS applies to both. "RLS only restricts data access for users with **Viewer** permissions. It doesn't apply to workspace **Admin**, **Member**, or **Contributor** roles." ([Row-level security](https://learn.microsoft.com/fabric/security/service-admin-row-level-security))
+Select **Save**.
 
-| Person | *Caldova Finance* (data, model) | *Caldova Finance Insights* (report) | On the model | Sees |
+| Person | *Caldova Finance* (lakehouse, model) | *Caldova Finance Insights* (report) | On the model | Sees |
 |---|---|---|---|---|
 | Laurence | Admin | Admin | Workspace role | All countries |
 | Isaac | None | Contributor | Read + Build; RLS role *Region Manager* | All 6 countries |
 | Colin | None | Viewer | Read + Build; RLS role *Business User* | Only Germany |
 
-Every business user needs an RLS role: "Users who aren't assigned to any RLS role typically see no data." ([Row-level security](https://learn.microsoft.com/fabric/security/service-admin-row-level-security))
+Isaac and Colin have no role on *Caldova Finance*, so RLS applies to both. "RLS only restricts data access for users with **Viewer** permissions. It doesn't apply to workspace **Admin**, **Member**, or **Contributor** roles." Without a role, they'd see nothing: "Users who aren't assigned to any RLS role typically see no data." ([Row-level security](https://learn.microsoft.com/fabric/security/service-admin-row-level-security))
 
 The sign-in uses a separate Azure CLI configuration folder (`AZURE_CONFIG_DIR`) inside the repo, so it never mixes with your usual account ([Azure CLI tips](https://learn.microsoft.com/cli/azure/use-azure-cli-successfully-tips)). The scripts also check the tenant ID of every token before they call Fabric.
 
