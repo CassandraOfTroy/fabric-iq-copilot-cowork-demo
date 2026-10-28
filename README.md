@@ -1,4 +1,4 @@
-# Fabric IQ in Microsoft 365 Copilot and Cowork: "Should we hold Annterra payments?"
+# Fabric IQ in Microsoft 365 Copilot and Cowork: "Should we block Annterra payments?"
 
 A 25-minute demo of **conversational analytics with Fabric IQ** in **Microsoft 365 Copilot Chat** and **Copilot Cowork**, on one governed Power BI semantic model and report, enriched with emails and files (**Work IQ**). This README is the whole runbook: the story, the setup, and the exact prompts.
 
@@ -21,7 +21,7 @@ Caldova is a fictional pharma company. It makes its medicine, Allerveo, in its o
   - $16,525 is flagged as overbilled;
   - Accounts Payable will block **$147,073** of payments, due from 4 November.
 
-  Isaac, Region Manager Europe, is about to tell Accounts Payable to hold them.
+  Isaac, Region Manager Europe, is about to tell Accounts Payable to block them.
 - **Why that's hard.** The data alone says "block". The reason it's wrong is outside the data: in a signed document and two emails. Usually it takes a chain of questions and meetings to find it, and meanwhile a supplier that billed correctly gets paid late.
 
 **The report, as Isaac sees it** (all 6 countries): Europe at 94.0%, Germany the only red bar.
@@ -130,7 +130,7 @@ How to answer
 
 | Table | Clear | Why |
 |---|---|---|
-| Invoice Lines | Overbilled Not Yet Paid | Sounds like "what AP will block", but it's only the overbilled part ($16.5K), not what AP holds ($147K) |
+| Invoice Lines | Overbilled Not Yet Paid | Sounds like "what AP will block", but it's only the overbilled part ($16.5K), not what AP will block ($147K) |
 | Invoice Lines | Amount at Risk | Same risk: also $16.5K for Germany |
 | Invoice Lines | Recovered Amount | Not part of this story |
 | Date | Month Start | Duplicates *Year Month* |
