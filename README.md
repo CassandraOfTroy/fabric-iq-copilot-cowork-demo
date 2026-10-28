@@ -32,9 +32,11 @@ Caldova is a fictional pharma company. It makes its medicine, Allerveo, in its o
 
 ![Supplier Invoice Assurance report, Germany only: invoice accuracy 71.7% (was 100%), 15 flagged Annterra invoices, $16.5K overbilled, $147.1K payments AP will block](images/report-colin-germany.png)
 
-**The signed amendment** ([seed-content](seed-content), uploaded to *Colin*'s OneDrive). The report knows nothing about it:
+**The signed amendment** ([seed-content](seed-content)). The report knows nothing about it:
 
-![Contract Amendment No. 1: $3.95 until 4 October 2026, $4.45 from 5 October 2026, signed 18 September 2026](images/contract-amendment.png)
+![Contract Amendment No. 1: $3.95 until 4 October 2026, $4.45 from 5 October 2026, signed by Charlotte Waltson on 18 September 2026](images/contract-amendment.png)
+
+> **Note:** *Charlotte* signed the amendment for Caldova Germany. For simplicity, the demo stores it in *Colin*'s OneDrive. In a real company it would be in a shared contracts folder, for example a SharePoint document library that *Colin* can access.
 
 ## The demo overview
 

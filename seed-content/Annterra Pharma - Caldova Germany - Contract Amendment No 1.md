@@ -34,5 +34,4 @@ All other terms of the supply agreement stay unchanged. The agreement ends on 31
 
 | For Caldova Germany GmbH | For Annterra Pharma |
 |---|---|
-| Colin Ballinger, Country Manager Germany, signed 18 September 2026 | Lena Hartmann, Commercial Director, signed 17 September 2026 |
-| Charlotte Waltson, Director Pricing & Contracting, signed 18 September 2026 | |
+| Charlotte Waltson, Director Pricing & Contracting, signed 18 September 2026 | Lena Hartmann, Commercial Director, signed 17 September 2026 |
