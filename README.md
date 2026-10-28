@@ -14,25 +14,25 @@ A 25-minute demo of **conversational analytics with Fabric IQ** in **Microsoft 3
 
 Caldova is a fictional pharma company. It makes its medicine, Allerveo, in its own plant and pays **Annterra Pharma** to pack the tablets for the German market, per finished pack.
 
-- **The change.** On 18 September, Charlotte, Director of Pricing & Contracting, signed Contract Amendment No. 1: **$4.45 per pack instead of $3.95, from 5 October**. She told Colin, Country Manager Germany, and sent the price update to the team mailbox that maintains the contract data.
+- **The change.** On 18 September, *Charlotte*, Director of Pricing & Contracting, signed Contract Amendment No. 1: **$4.45 per pack instead of $3.95, from 5 October**. She told *Colin*, Country Manager Germany, and sent the price update to the team mailbox that maintains the contract data.
 - **The gap.** That mailbox had been closed on 15 September. Nobody registered the new price, so the contract data still says **$3.95**.
 - **What the report shows.** Since 5 October all **15 Annterra invoices in Germany** are flagged *price above contract*:
   - Germany's invoice accuracy fell from 100% to 71.7%;
   - $16,525 is flagged as overbilled;
   - Accounts Payable will block **$147,073** of payments, due from 4 November.
 
-  Isaac, Region Manager Europe, is about to tell Accounts Payable to block them.
-- **Why that's hard.** The data alone says "block". The reason it's wrong is outside the data: in a signed document and two emails. Usually it takes a chain of questions and meetings to find it, and meanwhile a supplier that billed correctly gets paid late.
+  *Isaac*, Region Manager Europe, is about to tell Accounts Payable to block them. But first, he asks *Colin*, Country Manager Germany, for a local analysis of the supplier Annterra.
+- **What the data doesn't show.** The data says "block". The reason it's wrong is outside the data: in a signed document and two emails. Finding it usually takes several emails and meetings, and meanwhile a supplier that billed correctly is paid late.
 
-**The report, as Isaac sees it** (all 6 countries): Europe at 94.0%, Germany the only red bar.
+**The report, as *Isaac* sees it** (all 6 countries): Europe at 94.0%, Germany the only red bar.
 
 ![Supplier Invoice Assurance report, all countries: invoice accuracy 94.0% (was 99.7%), $22.2K overbilled, $167.9K payments AP will block, Germany $16.5K](images/report-isaac-europe.png)
 
-**The same report, as Colin sees it** (row-level security, Germany only): 71.7%, three red weeks from 5 October, all Annterra at $4.45 against $3.95 in the contract data, $147.1K to block.
+**The same report, as *Colin* sees it** (row-level security, Germany only): 71.7%, three red weeks from 5 October, all Annterra at $4.45 against $3.95 in the contract data, $147.1K to block.
 
 ![Supplier Invoice Assurance report, Germany only: invoice accuracy 71.7% (was 100%), 15 flagged Annterra invoices, $16.5K overbilled, $147.1K payments AP will block](images/report-colin-germany.png)
 
-**The signed amendment** ([seed-content](seed-content), uploaded to Colin's OneDrive). The report knows nothing about it:
+**The signed amendment** ([seed-content](seed-content), uploaded to *Colin*'s OneDrive). The report knows nothing about it:
 
 ![Contract Amendment No. 1: $3.95 until 4 October 2026, $4.45 from 5 October 2026, signed 18 September 2026](images/contract-amendment.png)
 
