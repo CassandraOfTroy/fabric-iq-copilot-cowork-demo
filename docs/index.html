@@ -123,14 +123,13 @@ p.lead{color:var(--mut);margin:0 0 18px;font-size:15px;max-width:980px}
 .qcard .qn{font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
 .qcard .qt{font-size:17px;font-weight:600;margin:6px 0}
 .qcard .qh{color:var(--mut);font-size:13.5px}
+.qcard .qc{margin:10px 0 6px;padding:8px 12px;border-left:4px solid var(--o1);background:var(--o1bg);border-radius:6px;font-size:14.5px}
 .qcard .yn{display:flex;gap:10px;margin-top:14px}
 .qcard .yn button{flex:1;padding:10px;border-radius:8px;border:1px solid var(--bd);background:var(--panel);font-size:15px;font-weight:600;cursor:pointer}
 .qcard .yn button:hover{border-color:var(--hl);color:var(--hl)}
 .res{border-top:6px solid var(--c);background:var(--cbg)}
 .res .rt{font-size:19px;font-weight:700;color:var(--c);margin:4px 0 8px}
 .res button{margin-top:12px;margin-right:8px;padding:8px 12px;border-radius:8px;border:1px solid var(--c);background:var(--panel);color:var(--c);cursor:pointer;font-weight:600}
-.res a.lnk{display:inline-block;margin-top:12px;margin-right:8px;padding:8px 12px;border-radius:8px;border:1px solid var(--c);background:var(--panel);color:var(--c);font-weight:600;text-decoration:none;font-size:13.333px;line-height:normal}
-.c0{--c:#57606a;--cbg:#f6f8fa}
 .trail{margin-top:12px;font-size:13px;color:var(--mut)}
 .trail li{margin:3px 0}
 .dtnote{margin-top:14px}
@@ -139,6 +138,7 @@ p.lead{color:var(--mut);margin:0 0 18px;font-size:15px;max-width:980px}
 #dt-svg .r1 rect{fill:var(--o1bg);stroke:var(--o1)}#dt-svg .r2 rect{fill:var(--o2bg);stroke:var(--o2)}#dt-svg .r3 rect{fill:var(--o3bg);stroke:var(--o3)}
 #dt-svg text{font-family:"Segoe UI",system-ui,sans-serif;font-size:13px;fill:#1f2328}
 #dt-svg .lbl{font-size:12px;font-weight:700;fill:#57606a}
+#dt-svg .ctx{fill:#117865}
 #dt-svg path{fill:none;stroke:#afb8c1;stroke-width:2;transition:all .25s}
 #dt-svg .on rect{stroke:#1f2328;stroke-width:3}
 #dt-svg path.on{stroke:#1f2328;stroke-width:3.5}
@@ -372,7 +372,7 @@ tr.all td{background:#f3f4f6;font-weight:600;color:var(--fg)}
   <button type="button" data-goto="opt3">How it works →</button>
  </div>
 </div>
-<div class="same"><b>Not sure which one?</b> Four questions in the <button type="button" data-goto="decide" style="border:0;background:none;color:var(--hl);cursor:pointer;font-size:14px;padding:0;text-decoration:underline">decision tree</button> point you to the right option. All three can be used side by side.</div>
+<div class="same"><b>Not sure which one?</b> Three questions in the <button type="button" data-goto="decide" style="border:0;background:none;color:var(--hl);cursor:pointer;font-size:14px;padding:0;text-decoration:underline">decision tree</button> point you to the right option. All three can be used side by side.</div>
 </section>
 
 <!-- ============ OPTION 1 ============ -->
@@ -551,7 +551,7 @@ Flag anything out of step.</div>
 
 <!-- ============ DECISION TREE ============ -->
 <section id="decide" role="tabpanel" aria-labelledby="tab-decide">
-<h2>Which option? Four questions</h2>
+<h2>Which option? Three questions</h2>
 <p class="lead">Start with the data, then the job. Teams often use more than one option.</p>
 <div class="dt">
  <div>
@@ -564,7 +564,7 @@ Flag anything out of step.</div>
    <li>A declarative agent for one business process that relies on Power BI insights and work insights.</li>
    <li>A specialist that also needs data agents: a Copilot Studio agent with the <b>Fabric IQ Data MCP</b> tool. <span class="q">“You can add more than one Fabric data agent to the same Copilot Studio agent, along with other tools and knowledge sources.”</span></li></ul></div>
  </div>
- <svg id="dt-svg" viewBox="0 0 700 620" role="img" aria-label="Decision tree. Question 1: Fabric data across several semantic models, a lakehouse, warehouse or KQL database, optionally with ontology context, leads to option 2, the Fabric data agent. Question 2: one business process that relies on Power BI insights and work insights leads to option 3, a declarative agent. Question 3: a quick, general overview of Power BI insights explained with work insights leads to question 4; otherwise, stay in Power BI. Question 4: if Copilot should also do the follow-up work, option 1 in Copilot Cowork; otherwise, option 1 in Copilot Chat.">
+ <svg id="dt-svg" viewBox="0 0 700 510" role="img" aria-label="Decision tree. Question 1: Fabric data across several semantic models and/or a lakehouse, warehouse or KQL database, optionally with ontology context, leads to option 2, the Fabric data agent. Question 2: one business process that relies on Power BI insights and work insights leads to option 3, a declarative agent. Otherwise the built-in option 1 fits: a quick, general overview or analysis of Power BI insights, explained from work insights. Question 3: if Copilot should also do the follow-up work, option 1 in Copilot Cowork; if not, option 1 in Copilot Chat.">
   <g data-n="q1"><rect x="20" y="20" width="380" height="80" rx="10"/><text x="34" y="46">Chat with Fabric data across several semantic models</text><text x="34" y="66">and/or a lakehouse, warehouse or KQL database,</text><text x="34" y="86">optionally with business context from an ontology?</text></g>
   <path data-n="q1-y" d="M400 60 H440"/><text class="lbl" data-n="q1-y" x="408" y="52">Yes</text>
   <g class="r2" data-n="r2"><rect x="440" y="30" width="240" height="60" rx="10"/><text x="454" y="56" font-weight="700">2 · Fabric data agent</text><text x="454" y="76">up to 5 sources + ontology context</text></g>
@@ -573,15 +573,11 @@ Flag anything out of step.</div>
   <path data-n="q2-y" d="M400 190 H440"/><text class="lbl" data-n="q2-y" x="408" y="182">Yes</text>
   <g class="r3" data-n="r3"><rect x="440" y="160" width="240" height="60" rx="10"/><text x="454" y="186" font-weight="700">3 · Declarative agent</text><text x="454" y="206">Fabric IQ + Work IQ, one job</text></g>
   <path data-n="q2-n" d="M210 230 V280"/><text class="lbl" data-n="q2-n" x="218" y="260">No</text>
-  <g data-n="q3"><rect x="20" y="280" width="380" height="80" rx="10"/><text x="34" y="306">Quick, general overview or analysis of Power BI</text><text x="34" y="326">insights, with the trends explained from your</text><text x="34" y="346">work insights (files, chats, emails)?</text></g>
-  <path data-n="q3-n" d="M400 320 H440"/><text class="lbl" data-n="q3-n" x="410" y="312">No</text>
-  <g data-n="r0"><rect x="440" y="290" width="240" height="60" rx="10"/><text x="454" y="316" font-weight="700">None of the three</text><text x="454" y="336">stay in the Power BI report</text></g>
-  <path data-n="q3-y" d="M210 360 V410"/><text class="lbl" data-n="q3-y" x="218" y="390">Yes</text>
-  <g data-n="q4"><rect x="20" y="410" width="380" height="80" rx="10"/><text x="34" y="436">Should Copilot also do the follow-up work for you:</text><text x="34" y="456">draft an email, create a document or a deck,</text><text x="34" y="476">schedule a meeting or a recurring summary?</text></g>
-  <path data-n="q4-y" d="M400 450 H440"/><text class="lbl" data-n="q4-y" x="408" y="442">Yes</text>
-  <g class="r1" data-n="r1w"><rect x="440" y="420" width="240" height="60" rx="10"/><text x="454" y="446" font-weight="700">1 · Fabric IQ in Copilot Cowork</text><text x="454" y="466">answers, then does the work</text></g>
-  <path data-n="q4-n" d="M210 490 V540"/><text class="lbl" data-n="q4-n" x="218" y="520">No</text>
-  <g class="r1" data-n="r1c"><rect x="20" y="540" width="380" height="60" rx="10"/><text x="34" y="566" font-weight="700">1 · Fabric IQ in Copilot Chat</text><text x="34" y="586">built in, nothing to build</text></g>
+  <g data-n="q3"><rect x="20" y="280" width="380" height="100" rx="10"/><text class="ctx" x="34" y="305">Quick, general overview or analysis of Power BI</text><text class="ctx" x="34" y="324">insights, with trends explained from work insights.</text><text x="34" y="348">Should Copilot also do the follow-up work: email,</text><text x="34" y="367">document or deck, meeting, recurring summary?</text></g>
+  <path data-n="q3-y" d="M400 330 H440"/><text class="lbl" data-n="q3-y" x="408" y="322">Yes</text>
+  <g class="r1" data-n="r1w"><rect x="440" y="300" width="240" height="60" rx="10"/><text x="454" y="326" font-weight="700">1 · Fabric IQ in Copilot Cowork</text><text x="454" y="346">answers, then does the work</text></g>
+  <path data-n="q3-n" d="M210 380 V430"/><text class="lbl" data-n="q3-n" x="218" y="410">No</text>
+  <g class="r1" data-n="r1c"><rect x="20" y="430" width="380" height="60" rx="10"/><text x="34" y="456" font-weight="700">1 · Fabric IQ in Copilot Chat</text><text x="34" y="476">answers and explains, nothing to build</text></g>
  </svg>
 </div>
 </section>
@@ -752,15 +748,13 @@ Flag anything out of step.</div>
   var Q = {
     q1: { num: 1, short: 'Fabric data in several semantic models, a lakehouse, warehouse or KQL database, or ontology context?', text: 'Do you want one agent to chat with Fabric data that\u2019s stored in several semantic models and/or in a lakehouse, warehouse, SQL or mirrored database or KQL database, optionally enriched with business context from a Fabric ontology (preview)?', hint: 'Example: invoice lines in a lakehouse and payment events in a KQL database, in one agent. If all the data is in Power BI semantic models and the answers also need your emails and files, question 2 fits better.', yes: 'r2', no: 'q2' },
     q2: { num: 2, short: 'One business process that relies on Power BI and work insights?', text: 'Is it one business process that relies on Power BI insights and work insights (emails, files, chats and meetings), answered the same way every time for a named team?', hint: 'Example: \u201cWhich flagged invoices should we keep blocked in the next payment run?\u201d answered supplier by supplier with a verdict, the evidence and owners.', yes: 'r3', no: 'q3' },
-    q3: { num: 3, short: 'Quick overview of Power BI insights, explained with work insights?', text: 'Do you need a quick, general overview or analysis of Power BI insights, from any report you can open, with the trends explained from your work insights (files, chats and emails)?', hint: 'Example: \u201cHow did invoice accuracy develop in the last 4 weeks, by country, and what do my emails say about it?\u201d', yes: 'q4', no: 'r0' },
-    q4: { num: 4, short: 'Should Copilot also do the follow-up work?', text: 'Should Copilot also do the follow-up work for you: draft an email, create a document or a deck, schedule a meeting or set up a recurring summary?', hint: 'Example from the demo: Colin asks Cowork to book a call with Charlotte and Laurence, email Laurence, build a 3-slide deck and send it to Isaac.', yes: 'r1w', no: 'r1c' }
+    q3: { num: 3, short: 'Should Copilot also do the follow-up work?', ctx: 'Then use what\u2019s built in: Fabric IQ for a quick, general overview or analysis of Power BI insights from any report you can open, with the trends explained from your work insights (files, chats and emails).', text: 'Should Copilot also do the follow-up work for you: draft an email, create a document or a deck, schedule a meeting or set up a recurring summary?', hint: 'Example from the demo: Colin asks Cowork to book a call with Charlotte and Laurence, email Laurence, build a 3-slide deck and send it to Isaac.', yes: 'r1w', no: 'r1c' }
   };
   var R = {
     r2: { c: 'c2', tab: 'opt2', title: '2 \u00b7 Fabric data agent', why: 'Of the three options, only a data agent queries lakehouses, warehouses, SQL and mirrored databases and KQL databases, and uses an ontology (preview) as business context. It works over up to five sources that you select, for example five semantic models, and runs every query with the user\u2019s permissions.', next: 'Build it in Fabric, publish it with a detailed description and select Publish to Agent Store. To use it inside a bigger agent, add it to a Copilot Studio agent with the Fabric IQ Data MCP tool.' },
     r3: { c: 'c3', tab: 'opt3', title: '3 \u00b7 Declarative agent with Fabric IQ', why: 'One agent for one job: your instructions and starters keep every answer on the process. The Fabric capability gets the Power BI numbers as the user; the work content you add (emails, files, chats and meetings) gives the why.', next: 'Agent Builder: New agent, then on the Configure tab turn on Fabric under Work content, add the work content and share the agent. Or package it and deploy it from the Microsoft 365 admin center.' },
     r1w: { c: 'c1', tab: 'opt1', title: '1 \u00b7 Fabric IQ in Copilot Cowork', why: 'Built in, nothing to build. Cowork grounds the chat in a Power BI report you can open, queries it as you, so RLS applies, and chains the answer into its skills: email, Word, PowerPoint, scheduling and meetings, also as a recurring summary. \u201cCowork completes multistep work across Microsoft 365 by taking action on your behalf.\u201d Before a sensitive action such as sending an email, it asks for your approval.', next: 'Users need Cowork, with usage-based Cowork billing turned on; the Fabric IQ plugin is installed by default. Prep data for AI (preview) on the semantic model helps: Cowork supports its verified answers and schema selection.' },
-    r1c: { c: 'c1', tab: 'opt1', title: '1 \u00b7 Fabric IQ in Copilot Chat', why: 'Built in, nothing to build. Copilot finds a report you can open, answers as you, so RLS applies, and combines the answer with your files, chats and emails. \u201cCopilot Chat helps you generate content and insights within a single session.\u201d', next: 'Ask in Copilot Chat. When Copilot should also do the follow-up work, use Cowork. Prep data for AI (preview) on the semantic model helps Copilot use the right measures.' },
-    r0: { c: 'c0', href: 'https://learn.microsoft.com/power-bi/create-reports/copilot-reports-overview', link: 'Copilot in Power BI on Microsoft Learn \u2192', title: 'None of the three: stay in Power BI', why: 'For a detailed analysis of one report, work in the report itself. Copilot in Power BI summarizes report pages and answers questions about the data, with references to the visuals it used.', next: 'Open the report and use the Copilot pane. Come back to option 1 when you want the answer in Microsoft 365 Copilot, with your work insights.' }
+    r1c: { c: 'c1', tab: 'opt1', title: '1 \u00b7 Fabric IQ in Copilot Chat', why: 'Built in, nothing to build. Copilot finds a report you can open, answers as you, so RLS applies, and combines the answer with your files, chats and emails. \u201cCopilot Chat helps you generate content and insights within a single session.\u201d', next: 'Ask in Copilot Chat. When Copilot should also do the follow-up work, use Cowork. Prep data for AI (preview) on the semantic model helps Copilot use the right measures.' }
   };
   var box = document.getElementById('dt-box'), trail = document.getElementById('dt-trail'), path = [], answers = [];
   function mark(){
@@ -775,6 +769,7 @@ Flag anything out of step.</div>
     if (Q[node]) {
       var q = Q[node];
       box.appendChild(el('div', 'qn', 'Question ' + q.num + ' of ' + Object.keys(Q).length));
+      if (q.ctx) box.appendChild(el('div', 'qc', q.ctx));
       box.appendChild(el('div', 'qt', q.text));
       box.appendChild(el('div', 'qh', q.hint));
       var yn = el('div', 'yn');
@@ -791,17 +786,11 @@ Flag anything out of step.</div>
       box.appendChild(el('div', 'rt', r.title));
       box.appendChild(el('p', '', r.why));
       box.appendChild(el('p', '', 'Next: ' + r.next));
-      if (r.tab) {
-        var go = el('button', '', 'How it works \u2192'); go.type = 'button';
-        go.addEventListener('click', function(){ openTab(r.tab, true); window.scrollTo(0, 0); });
-        box.appendChild(go);
-      } else if (r.href) {
-        var a = el('a', 'lnk', r.link); a.href = r.href; a.target = '_blank'; a.rel = 'noopener';
-        box.appendChild(a);
-      }
+      var go = el('button', '', 'How it works \u2192'); go.type = 'button';
+      go.addEventListener('click', function(){ openTab(r.tab, true); window.scrollTo(0, 0); });
       var again = el('button', '', 'Start over'); again.type = 'button';
       again.addEventListener('click', function(){ path = []; answers = []; render('q1'); });
-      box.appendChild(again);
+      box.appendChild(go); box.appendChild(again);
     }
   }
   render('q1');
