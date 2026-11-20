@@ -290,7 +290,7 @@ tr.all td{background:#f3f4f6;font-weight:600;color:var(--fg)}
    <g data-pick="ont"><rect x="468" y="264" width="308" height="42" rx="8" fill="#eef0ff" stroke="#4338ca" stroke-width="1.6" stroke-dasharray="5 3"/>
    <text class="kon" x="480" y="281" style="font-size:12.5px;font-weight:700">+ Ontology (preview) as business context</text>
    <text class="ts" x="480" y="298">Adds meaning; the query runs on the bound source</text></g>
-   <text class="tx" x="476" y="324">Agent Store: <tspan class="ti">Caldova Finance Agent</tspan></text>
+   <text class="tx" x="476" y="324">In Copilot: <tspan class="ti">Caldova Finance Agent</tspan></text>
   </g>
   <g class="nd" data-o="1" data-pick="1">
    <rect x="500" y="376" width="292" height="64" rx="32" fill="#e6f4f1" stroke="#117865" stroke-width="2"/>
@@ -453,7 +453,7 @@ Flag anything out of step.</div>
  <div class="box"><h3>Set it up</h3><ul>
   <li>Fabric capacity F2 or higher (or P1 or higher), and the data agent tenant settings. Outside the US and EU, cross-geo processing for AI.</li>
   <li>Each user: a Microsoft Copilot licence (or an Office 365 commercial subscription), and read access to the data agent and its sources.</li>
-  <li>Publish with a detailed description, then tick <b>Publish to Agent Store</b>. Users chat with it or @mention it.</li>
+  <li>Publish with a detailed description and turn on <b>Also publish to Microsoft Copilot</b>. Users chat with it or @mention it.</li>
   <li>Optional: add an ontology <span class="tag pv">Preview</span> as a context layer. It adds business meaning, and the query still runs on the bound source, as the user. See <button type="button" data-goto="onto" style="border:0;background:none;color:var(--hl);cursor:pointer;font-size:inherit;padding:0;text-decoration:underline">Ontology in Microsoft 365</button>.</li>
   <li>Want several data agents in one specialist? Add them to a Copilot Studio agent with the <b>Fabric IQ Data MCP</b> tool, then publish to Teams and Microsoft 365 Copilot.</li></ul></div>
  <div class="box"><h3>Limitations and FAQ on Microsoft Learn</h3><ul>
@@ -521,18 +521,17 @@ Flag anything out of step.</div>
 <div class="onflow">
  <div class="bx"><b>Ontology in Fabric IQ</b><small>Generated from semantic models or built from scratch, bound to data in Fabric</small></div>
  <div class="onarr" aria-hidden="true">→</div>
- <div class="bx"><b>An agent uses it as context</b><small>Data agent · Copilot Studio agent · operations agent · Foundry IQ agent · your own MCP client</small></div>
+ <div class="bx"><b>An agent uses it as context</b><small>Data agent · Copilot Studio agent · Foundry IQ agent · your own MCP client</small></div>
  <div class="onarr" aria-hidden="true">→</div>
- <div class="bx"><b>Microsoft 365</b><small>Copilot: Agent Store, channel or published agent · Teams: chat or alerts</small></div>
+ <div class="bx"><b>Microsoft 365</b><small>Copilot: Agent Store, channel or published agent · Teams: chat</small></div>
 </div>
-<div class="same"><b>Through a published agent.</b> People use an ontology in Microsoft 365 through an agent that's grounded in it and published there, with one of the five routes below.</div>
-<h3>Five routes to Microsoft 365</h3>
+<div class="same"><b>Through a published agent.</b> People use an ontology in Microsoft 365 through an agent that's grounded in it and published there, with one of the four routes below.</div>
+<h3>Four routes to Microsoft 365</h3>
 <table>
 <thead><tr><th class="h0">Route</th><th class="h0">Built where, by whom</th><th class="h0">How it reaches Microsoft 365</th><th class="h0">Use it for</th></tr></thead>
 <tbody>
-<tr><td>Fabric data agent, ontology as context</td><td>Fabric, by the data team (low-code)</td><td>Publish to the Agent Store: people open it in Microsoft 365 Copilot or @mention it</td><td>Q&amp;A over governed Fabric data with shared business meaning. Today's demo uses this route, without an ontology.</td></tr>
+<tr><td>Fabric data agent, ontology as context</td><td>Fabric, by the data team (low-code)</td><td>Publish to Microsoft Copilot: people open it in Microsoft 365 Copilot or @mention it</td><td>Q&amp;A over governed Fabric data with shared business meaning. Today's demo uses this route, without an ontology.</td></tr>
 <tr><td>Copilot Studio agent with the Fabric IQ MCP tool</td><td>Copilot Studio, by makers (low-code). Connection: workspace ID and ontology ID, sign-in with Microsoft Entra ID</td><td>Publish to the Teams and Microsoft 365 channel</td><td>Low-code agents grounded in the ontology. The same agent can also call data agents and other tools.</td></tr>
-<tr><td>Fabric operations agent</td><td>Fabric Real-Time Intelligence, by operations teams</td><td>It “can notify you in Microsoft Teams or take configured actions”</td><td>Monitoring business signals against goals, not Q&amp;A</td></tr>
 <tr><td>Foundry IQ agent</td><td>Microsoft Foundry, by developers. The ontology is a knowledge source</td><td>Publish the Foundry agent to Microsoft 365 Copilot and Teams</td><td>Full customization, tool calling and other enterprise systems</td></tr>
 <tr><td>Your own agent with the ontology MCP server</td><td>Any MCP client, by developers</td><td>Depends on the client. A declarative agent with an MCP plugin action is possible in principle, but not tested here.</td><td>Connecting existing AI tools and custom agents</td></tr>
 </tbody></table>
@@ -544,7 +543,7 @@ Flag anything out of step.</div>
  <div class="box"><h3>What it means here</h3><ul>
   <li>The Caldova demo has no ontology. The Power BI semantic model owns the metrics, and all three options use it as it is.</li>
   <li>Need shared business context across several models or operational data? Add an ontology to a data agent as context.</li>
-  <li>Need it in Microsoft 365 without building in Fabric? A Copilot Studio agent with the Fabric IQ MCP tool, published to Microsoft 365 Copilot.</li>
+  <li>Need it in Microsoft 365 without a data agent? In Copilot Studio, add the Fabric IQ MCP (Preview) tool to an agent, connect it to the ontology with its workspace ID and ontology ID, and publish the agent to Microsoft 365 Copilot.</li>
   <li>Either way, the ontology adds meaning. The numbers still come from the bound source, with the user's permissions.</li></ul></div>
 </div>
 </section>
@@ -595,7 +594,7 @@ Flag anything out of step.</div>
 <tr><td>Where you tune quality</td><td>Prep data for AI on the model (Preview)</td><td>Agent and data source instructions, example queries for SQL and KQL sources, table selection, publish description</td><td>Instructions (up to 8,000 characters), description, starters, knowledge scope; plus Prep data for AI</td></tr>
 <tr><td>Scope</td><td>Every report the user can open</td><td>Only the sources and tables you select</td><td>Steered by your instructions to the chosen report and work sources</td></tr>
 <tr><td>Does the work (email, deck, meeting)</td><td>Yes, in Cowork, each action with your approval</td><td>No, answers only</td><td>No, answers only; hand off to Cowork</td></tr>
-<tr><td>How users get it</td><td>Built in</td><td>Publish to Agent Store, then share the link; or a Copilot Studio agent with the Fabric IQ Data MCP tool</td><td>Share it (Can chat), deploy it from the admin center (Agents › All agents › Add agent), or submit it to the org catalog</td></tr>
+<tr><td>How users get it</td><td>Built in</td><td>Publish to Microsoft Copilot, then share the link; or a Copilot Studio agent with the Fabric IQ Data MCP tool</td><td>Share it (Can chat), deploy it from the admin center (Agents › All agents › Add agent), or submit it to the org catalog</td></tr>
 <tr><td>Licences and capacity</td><td>Microsoft 365 Copilot Premium per user; Cowork also needs usage-based billing</td><td>F2+ or P1+ capacity; a Copilot licence and read access per user</td><td>Microsoft 365 Copilot Premium for the maker and every user; no extra Fabric or Power BI licence</td></tr>
 <tr><td>Status (Microsoft Learn)</td><td>GA: Copilot Chat and the Cowork plugin</td><td>GA: data agent</td><td>GA: Fabric capability in Agent Builder</td></tr>
 <tr><td>Caldova demo</td><td>Last week: Isaac and Colin, Cowork decision pack</td><td>Today: Caldova Finance Agent</td><td>New: Supplier Invoice Advisor</td></tr>
@@ -655,7 +654,7 @@ Flag anything out of step.</div>
     w2: {
       1: ['Build in Fabric', 'Create a data agent and add up to five sources in total, in any mix (five semantic models also works): semantic models, lakehouses, warehouses, SQL and mirrored databases, KQL databases, and in preview graph models and Azure AI Search indexes. An ontology (preview) is added as context: \u201cIt provides semantic meaning but isn\u2019t the query execution endpoint.\u201d Select only the tables the agent needs, then write agent and data source instructions.'],
       2: ['Tune and test', 'Tune the agent with agent and data source instructions, example queries for SQL and KQL sources, and Prep data for AI on the semantic model. Test the questions in Fabric first.'],
-      3: ['Publish', 'Select Publish, write a detailed description (Copilot uses it to decide when to call the agent) and tick Publish to Agent Store. Only published agents reach Microsoft 365 Copilot and Copilot Studio.'],
+      3: ['Publish', 'Select Publish, write a detailed description (Copilot uses it to decide when to call the agent) and turn on Also publish to Microsoft Copilot. Only published agents reach Microsoft 365 Copilot and Copilot Studio.'],
       4: ['Ask in Copilot', 'Isaac opens Caldova Finance Agent in Microsoft 365 Copilot, or @mentions it in the main chat. The agent\u2019s orchestrator in Fabric picks the source and writes DAX, SQL or KQL, then runs it with Isaac\u2019s credentials. RLS and column-level security apply.'],
       5: ['Answer comes back', 'Copilot shows the agent\u2019s answer in the chat, with only the rows the user may see. To keep the agent\u2019s tables, its publish description can ask Copilot to return the answer as-is.']
     },
@@ -696,7 +695,7 @@ Flag anything out of step.</div>
   var OVC = {
     all: ['', 'Three paths, one place to ask', 'All three start from the same governed data and end in Microsoft 365 Copilot. What changes is what you build in between: nothing, a data agent in Fabric, or a declarative agent. Every path runs as the signed-in user, so Power BI permissions and RLS apply.', '', ''],
     '1': ['c1', '1 \u00b7 Fabric IQ in Copilot Chat and Cowork: nothing to build', 'Copilot finds the Power BI report the user can open, queries its semantic model as that user, and adds the why from emails and files (Work IQ). Cowork turns the answer into an email, a deck or a meeting.', '\u201cCopilot uses the user\u2019s existing permissions, including row-level security (RLS) and object-level security (OLS), to access the data.\u201d', 'opt1'],
-    '2': ['c2', '2 \u00b7 Fabric data agent: built in Fabric by the data team', 'One specialist over up to five sources in total, in any mix: semantic models, lakehouses, warehouses, SQL and mirrored databases, KQL databases; graph models and Azure AI Search indexes are in preview. An ontology (preview) can add business context: the agent uses it to understand the question, then queries the bound source as the user. Publish it to the Agent Store, and people pick it or @mention it in Copilot.', '\u201cA Fabric data agent supports up to five data sources in any combination\u2026\u201d', 'opt2'],
+    '2': ['c2', '2 \u00b7 Fabric data agent: built in Fabric by the data team', 'One specialist over up to five sources in total, in any mix: semantic models, lakehouses, warehouses, SQL and mirrored databases, KQL databases; graph models and Azure AI Search indexes are in preview. An ontology (preview) can add business context: the agent uses it to understand the question, then queries the bound source as the user. Publish it to Microsoft Copilot, and people pick it or @mention it there.', '\u201cA Fabric data agent supports up to five data sources in any combination\u2026\u201d', 'opt2'],
     ont: ['con', 'Ontology: business context for the data agent, not a source', 'An ontology (preview) gives the data agent shared business meaning: entity types, relationships, definitions, synonyms and bindings to the data. The agent uses it to understand the question, then writes SQL, KQL or DAX against the bound source and runs it with the user\u2019s permissions.', '\u201cOntology is a context source in this integration. It provides semantic meaning but isn\u2019t the query execution endpoint.\u201d', 'onto', 'Ontology in Microsoft 365 \u2192'],
     '3': ['c3', '3 \u00b7 Declarative agent with Fabric IQ: built by the process owner', 'One job, written as instructions. The Fabric capability gets the Power BI numbers as the user; the work sources you turn on supply the evidence. Share it with named people, or deploy it from the Microsoft 365 admin center.', '\u201cFabric is a first-party Agent Builder capability. You don\u2019t configure an MCP endpoint, app registration, or individual tools.\u201d', 'opt3'],
     ag: ['cag', 'Agentic flows: the data agent as a building block', 'Low-code: add one or more data agents to a Copilot Studio agent with the Fabric IQ Data MCP tool, next to other tools, and publish it to Microsoft 365 Copilot. Pro-code: give a declarative agent an MCP plugin action that calls the data agent. The plugin signs in with its own Microsoft Entra app registration (OAuth or Entra SSO). Not built in this demo.', '\u201cWhen you publish a Fabric data agent, it becomes an MCP server that exposes a single MCP tool.\u201d', 'opt2']
@@ -749,7 +748,7 @@ Flag anything out of step.</div>
     q3: { num: 3, short: 'Quick overview of Power BI insights, explained with work insights?', text: 'Do you need a quick, general overview or analysis of Power BI insights, from any report you can open, with the trends explained from your work insights (files, chats and emails)?', hint: 'Example: \u201cHow did invoice accuracy develop in the last 4 weeks, by country, and what do my emails say about it?\u201d In Cowork, Copilot can then draft the email, create the document or schedule the meeting.', yes: 'r1' }
   };
   var R = {
-    r2: { c: 'c2', tab: 'opt2', title: '2 \u00b7 Fabric data agent', why: 'Of the three options, only a data agent queries lakehouses, warehouses, SQL and mirrored databases and KQL databases, and uses an ontology (preview) as business context. It works over up to five sources that you select, for example five semantic models, and runs every query with the user\u2019s permissions.', next: 'Build it in Fabric, publish it with a detailed description and select Publish to Agent Store. To use it inside a bigger agent, add it to a Copilot Studio agent with the Fabric IQ Data MCP tool.' },
+    r2: { c: 'c2', tab: 'opt2', title: '2 \u00b7 Fabric data agent', why: 'Of the three options, only a data agent queries lakehouses, warehouses, SQL and mirrored databases and KQL databases, and uses an ontology (preview) as business context. It works over up to five sources that you select, for example five semantic models, and runs every query with the user\u2019s permissions.', next: 'Build it in Fabric, then select Publish, write a detailed description and turn on Also publish to Microsoft Copilot. To use it inside a bigger agent, add it to a Copilot Studio agent with the Fabric IQ Data MCP tool.' },
     r3: { c: 'c3', tab: 'opt3', title: '3 \u00b7 Declarative agent with Fabric IQ', why: 'One agent for one job: your instructions and starters keep every answer on the process. The Fabric capability gets the Power BI numbers as the user; the work content you add (emails, files, chats and meetings) gives the why.', next: 'Agent Builder: New agent, then on the Configure tab turn on Fabric under Work content, add the work content and share the agent. Or package it and deploy it from the Microsoft 365 admin center.' },
     r1: { c: 'c1', tab: 'opt1', title: '1 \u00b7 Fabric IQ in Copilot Chat and Cowork', why: 'Built in, nothing to build. Both use Fabric IQ on the Power BI reports you can open and run every query as you, so RLS applies.', steps: [['Copilot Chat', 'to ask and explain: Copilot finds the report, answers, and explains the trends with your files, chats and emails.'], ['Copilot Cowork', 'for the follow-up work: it chains the answer into an email, a document or deck, a meeting or a recurring summary, and asks for your approval before a sensitive action such as sending an email.']], next: 'Users need a Microsoft 365 Copilot Premium licence; Cowork also needs usage-based Cowork billing turned on. The Fabric IQ plugin is installed by default. Prep data for AI (preview) on the semantic model helps Copilot use the right measures.' }
   };
