@@ -129,6 +129,8 @@ p.lead{color:var(--mut);margin:0 0 18px;font-size:15px;max-width:980px}
 .res{border-top:6px solid var(--c);background:var(--cbg)}
 .res .rt{font-size:19px;font-weight:700;color:var(--c);margin:4px 0 8px}
 .res button{margin-top:12px;margin-right:8px;padding:8px 12px;border-radius:8px;border:1px solid var(--c);background:var(--panel);color:var(--c);cursor:pointer;font-weight:600}
+.res a.lnk{display:inline-block;margin-top:12px;margin-right:8px;padding:8px 12px;border-radius:8px;border:1px solid var(--c);background:var(--panel);color:var(--c);font-weight:600;text-decoration:none;font-size:13.333px;line-height:normal}
+.c0{--c:#57606a;--cbg:#f6f8fa}
 .trail{margin-top:12px;font-size:13px;color:var(--mut)}
 .trail li{margin:3px 0}
 .dtnote{margin-top:14px}
@@ -556,25 +558,25 @@ Flag anything out of step.</div>
   <div id="dt-box" class="qcard" aria-live="polite"></div>
   <ul id="dt-trail" class="trail"></ul>
   <div class="box dtnote"><h3>Combine them</h3><ul>
-   <li>Copilot Chat and Cowork for everyday report questions and follow-up work.</li>
-   <li>A data agent where you need lakehouse, warehouse or KQL data, or several sources.</li>
-   <li>A declarative agent for a process that needs a fixed answer format and work evidence.</li>
+   <li>Copilot Chat and Cowork for quick, general analysis of Power BI insights, explained with your work insights, and for the follow-up work.</li>
+   <li>A data agent for Fabric data across several semantic models, lakehouses, warehouses or KQL databases, optionally with ontology context.</li>
+   <li>A declarative agent for one business process that relies on Power BI insights and work insights.</li>
    <li>A specialist that also needs data agents: a Copilot Studio agent with the <b>Fabric IQ Data MCP</b> tool. <span class="q">“You can add more than one Fabric data agent to the same Copilot Studio agent, along with other tools and knowledge sources.”</span></li></ul></div>
  </div>
- <svg id="dt-svg" viewBox="0 0 640 500" role="img" aria-label="Decision tree: question 1 data outside Power BI leads to option 2; question 2 one business process leads to option 3; question 3 follow-up work leads to option 1 in Cowork, otherwise option 1 in Copilot Chat">
-  <g data-n="q1"><rect x="20" y="20" width="330" height="80" rx="10"/><text x="34" y="46">Need data outside Power BI semantic models</text><text x="34" y="66">(lakehouse, warehouse, KQL, mirrored DB)</text><text x="34" y="86">or one agent over several Fabric sources?</text></g>
-  <path data-n="q1-y" d="M350 60 H400"/><text class="lbl" data-n="q1-y" x="360" y="52">Yes</text>
-  <g class="r2" data-n="r2"><rect x="400" y="30" width="220" height="60" rx="10"/><text x="414" y="56" font-weight="700">2 · Fabric data agent</text><text x="414" y="76">up to 5 sources, own orchestrator</text></g>
-  <path data-n="q1-n" d="M185 100 V150"/><text class="lbl" data-n="q1-n" x="193" y="130">No</text>
-  <g data-n="q2"><rect x="20" y="150" width="330" height="90" rx="10"/><text x="34" y="176">One business process with fixed definitions,</text><text x="34" y="196">answer format, starters and chosen work</text><text x="34" y="216">sources, for a named team?</text></g>
-  <path data-n="q2-y" d="M350 195 H400"/><text class="lbl" data-n="q2-y" x="360" y="187">Yes</text>
-  <g class="r3" data-n="r3"><rect x="400" y="165" width="220" height="60" rx="10"/><text x="414" y="191" font-weight="700">3 · Declarative agent</text><text x="414" y="211">with Fabric IQ</text></g>
-  <path data-n="q2-n" d="M185 240 V290"/><text class="lbl" data-n="q2-n" x="193" y="270">No</text>
-  <g data-n="q3"><rect x="20" y="290" width="330" height="80" rx="10"/><text x="34" y="318">Should Copilot also do the follow-up work</text><text x="34" y="338">(email, deck, meeting, recurring briefing)?</text></g>
-  <path data-n="q3-y" d="M350 330 H400"/><text class="lbl" data-n="q3-y" x="360" y="322">Yes</text>
-  <g class="r1" data-n="r1w"><rect x="400" y="300" width="220" height="60" rx="10"/><text x="414" y="326" font-weight="700">1 · Fabric IQ in Cowork</text><text x="414" y="346">built in, does the work</text></g>
-  <path data-n="q3-n" d="M185 370 V420"/><text class="lbl" data-n="q3-n" x="193" y="400">No</text>
-  <g class="r1" data-n="r1c"><rect x="20" y="420" width="330" height="60" rx="10"/><text x="34" y="446" font-weight="700">1 · Fabric IQ in Copilot Chat</text><text x="34" y="466">built in, nothing to build</text></g>
+ <svg id="dt-svg" viewBox="0 0 700 490" role="img" aria-label="Decision tree. Question 1: Fabric data across several semantic models, a lakehouse, warehouse or KQL database, optionally with ontology context, leads to option 2, the Fabric data agent. Question 2: one business process that relies on Power BI insights and work insights leads to option 3, a declarative agent. Question 3: a quick, general overview of Power BI insights explained with work insights leads to option 1, Fabric IQ in Copilot Chat and Cowork. Otherwise, stay in Power BI.">
+  <g data-n="q1"><rect x="20" y="20" width="380" height="80" rx="10"/><text x="34" y="46">Chat with Fabric data across several semantic models</text><text x="34" y="66">and/or a lakehouse, warehouse or KQL database,</text><text x="34" y="86">optionally with business context from an ontology?</text></g>
+  <path data-n="q1-y" d="M400 60 H440"/><text class="lbl" data-n="q1-y" x="408" y="52">Yes</text>
+  <g class="r2" data-n="r2"><rect x="440" y="30" width="240" height="60" rx="10"/><text x="454" y="56" font-weight="700">2 · Fabric data agent</text><text x="454" y="76">up to 5 sources + ontology context</text></g>
+  <path data-n="q1-n" d="M210 100 V150"/><text class="lbl" data-n="q1-n" x="218" y="130">No</text>
+  <g data-n="q2"><rect x="20" y="150" width="380" height="80" rx="10"/><text x="34" y="176">One business process that relies on Power BI</text><text x="34" y="196">insights and work insights (emails, files, chats,</text><text x="34" y="216">meetings), answered the same way every time?</text></g>
+  <path data-n="q2-y" d="M400 190 H440"/><text class="lbl" data-n="q2-y" x="408" y="182">Yes</text>
+  <g class="r3" data-n="r3"><rect x="440" y="160" width="240" height="60" rx="10"/><text x="454" y="186" font-weight="700">3 · Declarative agent</text><text x="454" y="206">Fabric IQ + Work IQ, one job</text></g>
+  <path data-n="q2-n" d="M210 230 V280"/><text class="lbl" data-n="q2-n" x="218" y="260">No</text>
+  <g data-n="q3"><rect x="20" y="280" width="380" height="80" rx="10"/><text x="34" y="306">Quick, general overview or analysis of Power BI</text><text x="34" y="326">insights, with the trends explained from your</text><text x="34" y="346">work insights (files, chats, emails)?</text></g>
+  <path data-n="q3-y" d="M400 320 H440"/><text class="lbl" data-n="q3-y" x="408" y="312">Yes</text>
+  <g class="r1" data-n="r1"><rect x="440" y="290" width="240" height="60" rx="10"/><text x="454" y="316" font-weight="700">1 · Fabric IQ in Copilot Chat</text><text x="454" y="336">+ Cowork for the follow-up work</text></g>
+  <path data-n="q3-n" d="M210 360 V410"/><text class="lbl" data-n="q3-n" x="218" y="390">No</text>
+  <g data-n="r0"><rect x="20" y="410" width="380" height="60" rx="10"/><text x="34" y="436" font-weight="700">None of the three: stay in Power BI</text><text x="34" y="456">the report, with Copilot in Power BI</text></g>
  </svg>
 </div>
 </section>
@@ -590,7 +592,7 @@ Flag anything out of step.</div>
 <tr><td>Who answers the data question</td><td>Microsoft 365 Copilot (Fabric IQ)</td><td>The data agent's own orchestrator in Fabric. Copilot routes the question and may rephrase the answer.</td><td>Microsoft 365 Copilot (Fabric IQ), guided by your instructions</td></tr>
 <tr><td>Data it can query</td><td>Power BI reports and semantic models the user can open</td><td>Up to five sources in total, in any mix: semantic models, lakehouses, warehouses, SQL and mirrored databases, KQL databases; in preview also graph models and Azure AI Search indexes. An ontology (preview) is a context source: it adds business meaning, and the query runs on the source it is bound to.</td><td>Power BI reports and semantic models the user can open</td></tr>
 <tr><td>How the query is written</td><td>Power BI runs the query on the semantic model</td><td>NL2DAX, NL2SQL, NL2KQL, and GQL for graph models</td><td>Power BI runs the query on the semantic model</td></tr>
-<tr><td>Work context (emails, files)</td><td>Yes, reconciled automatically</td><td>No. Its sources are Fabric data (and, in preview, Azure AI Search indexes)</td><td>Yes, the sources you turn on: emails, OneDrive and SharePoint, people, Teams</td></tr>
+<tr><td>Work context (emails, files)</td><td>Yes, reconciled automatically</td><td>Not built in: only through the data sources you add</td><td>Yes, the sources you turn on: emails, OneDrive and SharePoint, people, Teams</td></tr>
 <tr><td>Where you tune quality</td><td>Prep data for AI on the model (Preview)</td><td>Agent and data source instructions, example queries for SQL and KQL sources, table selection, publish description</td><td>Instructions (up to 8,000 characters), description, starters, knowledge scope; plus Prep data for AI</td></tr>
 <tr><td>Scope</td><td>Every report the user can open</td><td>Only the sources and tables you select</td><td>Steered by your instructions to the chosen report and work sources</td></tr>
 <tr><td>Does the work (email, deck, meeting)</td><td>Yes, in Cowork, each action with your approval</td><td>No, answers only</td><td>No, answers only; hand off to Cowork</td></tr>
@@ -695,7 +697,7 @@ Flag anything out of step.</div>
   var OVC = {
     all: ['', 'Three paths, one place to ask', 'All three start from the same governed data and end in Microsoft 365 Copilot. What changes is what you build in between: nothing, a data agent in Fabric, or a declarative agent. Every path runs as the signed-in user, so Power BI permissions and RLS apply.', '', ''],
     '1': ['c1', '1 \u00b7 Fabric IQ in Copilot Chat and Cowork: nothing to build', 'Copilot finds the Power BI report the user can open, queries its semantic model as that user, and adds the why from emails and files (Work IQ). Cowork turns the answer into an email, a deck or a meeting.', '\u201cCopilot uses the user\u2019s existing permissions, including row-level security (RLS) and object-level security (OLS), to access the data.\u201d', 'opt1'],
-    '2': ['c2', '2 \u00b7 Fabric data agent: built in Fabric by the data team', 'One specialist over up to five sources in total, in any mix: semantic models, lakehouses, warehouses, SQL and mirrored databases, KQL databases; graph models and Azure AI Search indexes are in preview. An ontology (preview) can add business context: the agent uses it to understand the question, then queries the bound source as the user. Publish it to the Agent Store, and people pick it or @mention it in Copilot. Its sources are data, not emails or files.', '\u201cA Fabric data agent supports up to five data sources in any combination\u2026\u201d', 'opt2'],
+    '2': ['c2', '2 \u00b7 Fabric data agent: built in Fabric by the data team', 'One specialist over up to five sources in total, in any mix: semantic models, lakehouses, warehouses, SQL and mirrored databases, KQL databases; graph models and Azure AI Search indexes are in preview. An ontology (preview) can add business context: the agent uses it to understand the question, then queries the bound source as the user. Publish it to the Agent Store, and people pick it or @mention it in Copilot.', '\u201cA Fabric data agent supports up to five data sources in any combination\u2026\u201d', 'opt2'],
     ont: ['con', 'Ontology: business context for the data agent, not a source', 'An ontology (preview) gives the data agent shared business meaning: entity types, relationships, definitions, synonyms and bindings to the data. The agent uses it to understand the question, then writes SQL, KQL or DAX against the bound source and runs it with the user\u2019s permissions.', '\u201cOntology is a context source in this integration. It provides semantic meaning but isn\u2019t the query execution endpoint.\u201d', 'onto', 'Ontology in Microsoft 365 \u2192'],
     '3': ['c3', '3 \u00b7 Declarative agent with Fabric IQ: built by the process owner', 'One job, written as instructions. The Fabric capability gets the Power BI numbers as the user; the work sources you turn on supply the evidence. Share it with named people, or deploy it from the Microsoft 365 admin center.', '\u201cFabric is a first-party Agent Builder capability. You don\u2019t configure an MCP endpoint, app registration, or individual tools.\u201d', 'opt3'],
     ag: ['cag', 'Agentic flows: the data agent as a building block', 'Low-code: add one or more data agents to a Copilot Studio agent with the Fabric IQ Data MCP tool, next to other tools, and publish it to Microsoft 365 Copilot. Pro-code: give a declarative agent an MCP plugin action that calls the data agent. The plugin signs in with its own Microsoft Entra app registration (OAuth or Entra SSO). Not built in this demo.', '\u201cWhen you publish a Fabric data agent, it becomes an MCP server that exposes a single MCP tool.\u201d', 'opt2']
@@ -743,15 +745,15 @@ Flag anything out of step.</div>
 
   /* ---------- decision tree ---------- */
   var Q = {
-    q1: { num: 1, short: 'Data outside Power BI models, or several Fabric sources?', text: 'Does the answer need data outside Power BI semantic models (a lakehouse, warehouse, KQL database or mirrored database), one agent that combines several Fabric sources, or an ontology as business context?', hint: 'Example: invoice lines in the lakehouse plus payment events in an Eventhouse, in one answer.', yes: 'r2', no: 'q2' },
-    q2: { num: 2, short: 'One business process with a fixed answer format?', text: 'Is it one business process with fixed definitions and answer format, conversation starters and chosen work sources (contracts, a mailbox, a SharePoint library), shared with a named team?', hint: 'Example: \u201cWhich flagged invoices should we keep blocked in the next payment run?\u201d answered supplier by supplier with a verdict, the evidence and owners.', yes: 'r3', no: 'q3' },
-    q3: { num: 3, short: 'Should Copilot also do the follow-up work?', text: 'Should Copilot also do the follow-up work: emails, decks, meetings or a recurring briefing?', hint: 'Example: email Laurence, build the decision deck, book 15 minutes with Isaac.', yes: 'r1w', no: 'r1c' }
+    q1: { num: 1, short: 'Fabric data in several semantic models, a lakehouse, warehouse or KQL database, or ontology context?', text: 'Do you want one agent to chat with Fabric data that\u2019s stored in several semantic models and/or in a lakehouse, warehouse, SQL or mirrored database or KQL database, optionally enriched with business context from a Fabric ontology (preview)?', hint: 'Example: invoice lines in a lakehouse and payment events in a KQL database, in one agent. If all the data is in Power BI semantic models and the answers also need your emails and files, question 2 fits better.', yes: 'r2', no: 'q2' },
+    q2: { num: 2, short: 'One business process that relies on Power BI and work insights?', text: 'Is it one business process that relies on Power BI insights and work insights (emails, files, chats and meetings), answered the same way every time for a named team?', hint: 'Example: \u201cWhich flagged invoices should we keep blocked in the next payment run?\u201d answered supplier by supplier with a verdict, the evidence and owners.', yes: 'r3', no: 'q3' },
+    q3: { num: 3, short: 'Quick overview of Power BI insights, explained with work insights?', text: 'Do you need a quick, general overview or analysis of Power BI insights, from any report you can open, with the trends explained from your work insights (files, chats and emails)?', hint: 'Example: \u201cHow did invoice accuracy develop in the last 4 weeks, by country, and what do my emails say about it?\u201d In Cowork, Copilot can then draft the email, create the document or schedule the meeting.', yes: 'r1', no: 'r0' }
   };
   var R = {
-    r2: { c: 'c2', tab: 'opt2', title: '2 \u00b7 Fabric data agent', why: 'Of the three options, only the data agent queries lakehouses, warehouses and KQL databases, and it can use an ontology as business context: up to five sources in one agent, with NL2SQL, NL2DAX and NL2KQL, run as the user.', next: 'Build it in Fabric, publish it with a detailed description and tick Publish to Agent Store. If a specialist needs it too, add it to a Copilot Studio agent with the Fabric IQ Data MCP tool.' },
-    r3: { c: 'c3', tab: 'opt3', title: '3 \u00b7 Declarative agent with Fabric IQ', why: 'Your instructions and starters keep every answer on the process. Fabric gives the Power BI numbers; your chosen work sources give the why.', next: 'Agent Builder: New agent \u203a Skip to configure \u203a Work content: Fabric, then Share with Can chat. Or package it and deploy it from the Microsoft 365 admin center.' },
-    r1w: { c: 'c1', tab: 'opt1', title: '1 \u00b7 Fabric IQ in Copilot Cowork', why: 'Built in. Cowork grounds on the report and chains the answer into email, documents and meetings, with your approval at each step.', next: 'Nothing to build. Run Prep data for AI on the model and check that users have Cowork.' },
-    r1c: { c: 'c1', tab: 'opt1', title: '1 \u00b7 Fabric IQ in Copilot Chat', why: 'Built in. Ask any report you can open, and Copilot combines the answer with your emails and files.', next: 'Nothing to build. Run Prep data for AI on the model so Copilot uses the right measures.' }
+    r2: { c: 'c2', tab: 'opt2', title: '2 \u00b7 Fabric data agent', why: 'Of the three options, only a data agent queries lakehouses, warehouses, SQL and mirrored databases and KQL databases, and uses an ontology (preview) as business context. It works over up to five sources that you select, for example five semantic models, and runs every query with the user\u2019s permissions.', next: 'Build it in Fabric, publish it with a detailed description and select Publish to Agent Store. To use it inside a bigger agent, add it to a Copilot Studio agent with the Fabric IQ Data MCP tool.' },
+    r3: { c: 'c3', tab: 'opt3', title: '3 \u00b7 Declarative agent with Fabric IQ', why: 'One agent for one job: your instructions and starters keep every answer on the process. The Fabric capability gets the Power BI numbers as the user; the work content you add (emails, files, chats and meetings) gives the why.', next: 'Agent Builder: New agent, then on the Configure tab turn on Fabric under Work content, add the work content and share the agent. Or package it and deploy it from the Microsoft 365 admin center.' },
+    r1: { c: 'c1', tab: 'opt1', title: '1 \u00b7 Fabric IQ in Copilot Chat and Cowork', why: 'Built in, nothing to build. Copilot finds a report you can open, answers as you, so RLS applies, and combines the answer with your files, chats and emails. In Cowork, Copilot also does the follow-up work: an email, a document, a meeting or a recurring summary. Before a sensitive action such as sending an email, Cowork asks for your approval.', next: 'Ask in Copilot Chat. Use Cowork when Copilot should also do the follow-up work. Prep data for AI (preview) on the semantic model helps Copilot use the right measures.' },
+    r0: { c: 'c0', href: 'https://learn.microsoft.com/power-bi/create-reports/copilot-reports-overview', link: 'Copilot in Power BI on Microsoft Learn \u2192', title: 'None of the three: stay in Power BI', why: 'For a detailed analysis of one report, work in the report itself. Copilot in Power BI summarizes report pages and answers questions about the data, with references to the visuals it used.', next: 'Open the report and use the Copilot pane. Come back to option 1 when you want the answer in Microsoft 365 Copilot, with your work insights.' }
   };
   var box = document.getElementById('dt-box'), trail = document.getElementById('dt-trail'), path = [], answers = [];
   function mark(){
@@ -782,11 +784,17 @@ Flag anything out of step.</div>
       box.appendChild(el('div', 'rt', r.title));
       box.appendChild(el('p', '', r.why));
       box.appendChild(el('p', '', 'Next: ' + r.next));
-      var go = el('button', '', 'How it works \u2192'); go.type = 'button';
-      go.addEventListener('click', function(){ openTab(r.tab, true); window.scrollTo(0, 0); });
+      if (r.tab) {
+        var go = el('button', '', 'How it works \u2192'); go.type = 'button';
+        go.addEventListener('click', function(){ openTab(r.tab, true); window.scrollTo(0, 0); });
+        box.appendChild(go);
+      } else if (r.href) {
+        var a = el('a', 'lnk', r.link); a.href = r.href; a.target = '_blank'; a.rel = 'noopener';
+        box.appendChild(a);
+      }
       var again = el('button', '', 'Start over'); again.type = 'button';
       again.addEventListener('click', function(){ path = []; answers = []; render('q1'); });
-      box.appendChild(go); box.appendChild(again);
+      box.appendChild(again);
     }
   }
   render('q1');
