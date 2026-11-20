@@ -531,7 +531,7 @@ Flag anything out of step.</div>
 <thead><tr><th class="h0">Route</th><th class="h0">Built where, by whom</th><th class="h0">How it reaches Microsoft 365</th><th class="h0">Use it for</th></tr></thead>
 <tbody>
 <tr><td>Fabric data agent, ontology as context</td><td>Fabric, by the data team (low-code)</td><td>Publish to Microsoft Copilot: people open it in Microsoft 365 Copilot or @mention it</td><td>Q&amp;A over governed Fabric data with shared business meaning. Today's demo uses this route, without an ontology.</td></tr>
-<tr><td>Copilot Studio agent with the Fabric IQ MCP tool</td><td>Copilot Studio, by makers (low-code). Connection: workspace ID and ontology ID, sign-in with Microsoft Entra ID</td><td>Publish to the Teams and Microsoft 365 channel</td><td>Low-code agents grounded in the ontology. The same agent can also call data agents and other tools.</td></tr>
+<tr><td>Copilot Studio agent with the Fabric IQ Ontology MCP tool <span class="tag pv">Preview</span></td><td>Copilot Studio, by makers (low-code). Connection: workspace ID and ontology ID, sign-in with Microsoft Entra ID</td><td>Publish to the Teams and Microsoft 365 channel</td><td>Low-code agents grounded in the ontology. The same agent can also call data agents and other tools.</td></tr>
 <tr><td>Foundry IQ agent</td><td>Microsoft Foundry, by developers. The ontology is a knowledge source</td><td>Publish the Foundry agent to Microsoft 365 Copilot and Teams</td><td>Full customization, tool calling and other enterprise systems</td></tr>
 <tr><td>Your own agent with the ontology MCP server</td><td>Any MCP client, by developers</td><td>Depends on the client. A declarative agent with an MCP plugin action is possible in principle, but not tested here.</td><td>Connecting existing AI tools and custom agents</td></tr>
 </tbody></table>
@@ -543,7 +543,7 @@ Flag anything out of step.</div>
  <div class="box"><h3>What it means here</h3><ul>
   <li>The Caldova demo has no ontology. The Power BI semantic model owns the metrics, and all three options use it as it is.</li>
   <li>Need shared business context across several models or operational data? Add an ontology to a data agent as context.</li>
-  <li>Need it in Microsoft 365 without a data agent? In Copilot Studio, add the Fabric IQ MCP (Preview) tool to an agent, connect it to the ontology with its workspace ID and ontology ID, and publish the agent to Microsoft 365 Copilot.</li>
+  <li>Need it in Microsoft 365 without a data agent? In Copilot Studio, add the Fabric IQ Ontology MCP tool <span class="tag pv">Preview</span> to an agent (search for Fabric IQ Ontology), connect it to the ontology with its workspace ID and ontology ID, and publish the agent to Microsoft 365 Copilot.</li>
   <li>Either way, the ontology adds meaning. The numbers still come from the bound source, with the user's permissions.</li></ul></div>
 </div>
 </section>
