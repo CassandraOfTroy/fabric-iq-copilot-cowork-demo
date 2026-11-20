@@ -2,6 +2,8 @@
 
 A 25-minute demo of **conversational analytics with Fabric IQ** in **Microsoft 365 Copilot Chat** and **Copilot Cowork**, on one governed Power BI semantic model and report, enriched with emails and files (**Work IQ**). This README is the whole runbook: the story, the setup, and the exact prompts.
 
+**Three ways to chat with your data:** Fabric IQ in Copilot Chat and Cowork (this demo), a Fabric data agent, and a declarative agent with Fabric IQ, compared on one [interactive page](https://cassandraoftroy.github.io/fabric-iq-copilot-cowork-demo/) with a decision tree.
+
 1. [The problem](#the-problem)
 2. [The demo overview](#the-demo-overview)
 3. [Set up](#set-up)
@@ -374,6 +376,7 @@ Last 4 weeks = 28 Sep – 23 Oct 2026.
 | [scripts/](scripts) | Sign-in, tenant isolation, deployment and contract-price scripts |
 | [config/](config) | `tenant.example.json`; your own `tenant.json` stays local (git-ignored) |
 | [images/](images) | Images used in this README |
+| [docs/](docs) | The interactive page *Chat with your data in Microsoft 365: three options*, published with GitHub Pages at https://cassandraoftroy.github.io/fabric-iq-copilot-cowork-demo/ |
 
 ### No confidential information
 
